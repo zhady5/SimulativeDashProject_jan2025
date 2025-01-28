@@ -64,8 +64,8 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
     fig_posts.update_layout(
         template="simple_white",
         font_family="Georgia",
-        font_size=16,
-        margin=dict(l=40, r=40, t=60, b=10),
+        font_size=13,
+        margin=dict(l=40, r=60, t=60, b=10),
         paper_bgcolor= bgcolor, #'#ffb347', #'rgba(0,0,0,0)',
         plot_bgcolor= bgcolor, #'rgba(0,0,0,0)',
         xaxis=dict(
