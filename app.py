@@ -72,11 +72,11 @@ st.markdown(f"""
     }}
 
     .custom-text {{ color: {word_color}; 
-                   font-size: 18px; 
+                   font-size: 14px; 
                    }} 
     .custom-number {{ color: {metrics_number_color}; 
                      font-weight: bold; 
-                     font-size: 19px; }}
+                     font-size: 16px; }}
     
 
     .button-container {{
