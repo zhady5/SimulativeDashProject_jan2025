@@ -1,0 +1,29 @@
+name: Scheduled Task
+
+on:
+  schedule:
+    - cron: '0 2,6,10,14,18,22 * * *'  # Запуск каждые 4 часа '0 1,5,9,13,17,21 * * *'
+  workflow_dispatch:  # Позволяет запускать workflow вручную
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.10'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pandas psycopg2-binary python-dotenv requests
+    - name: Run script
+      env:
+        DB_NAME: ${{ secrets.DB_NAME }}
+        DB_USER: ${{ secrets.DB_USER }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+        DB_HOST: ${{ secrets.DB_HOST }}
+        DB_PORT: ${{ secrets.DB_PORT }}
+        DASH_TOKEN:  ${{ secrets.DASH_TOKEN }}
+      run: python preparation_data/schedule_load_data.py
