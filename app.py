@@ -349,8 +349,21 @@ def main():
     st.markdown('<div class="subheader"><h2>Динамика просмотров по дням</h2></div>', unsafe_allow_html=True)
     st.markdown('<div class="custom-text">Эта таблица помогает определить оптимальное время для публикаций: если в первые сутки после публикации она собирает более 35% всех просмотров, это успешное время публикации; иначе стоит пересмотреть график размещения контента, чтобы новые публикации не затерялись среди конкурентов. Также можно обнаружить возможную мошенническую активность: например, если за одни сутки видео набирает 80% общего количества просмотров, следует проявить осторожность, проанализировать частоту подобных аномалий и сделать выводы (проценты приведены, как пример).</div>', unsafe_allow_html=True)
 
-    st.slider("", min_value=7, max_value=72, value=14, key="slider_days")
-    days_to_show = st.session_state.slider_days
+    # Создаём отдельное состояние для таблицы
+    if 'table_filter_state' not in st.session_state:
+        st.session_state.table_filter_state = 14  # начальное значение
+    # Слайдер для настройки диапазона дней
+    days_to_show = st.slider(
+        label="", 
+        min_value=7, 
+        max_value=72, 
+        value=st.session_state.table_filter_state,
+        key="slider_days",
+    )
+    st.session_state.table_filter_state = days_to_show  # сохраняем новое значение    
+
+    #st.slider("", min_value=7, max_value=72, value=14, key="slider_days")
+    #days_to_show = st.session_state.slider_days
     columns_to_show = [ "Дата публикации", "Текст поста","Текущие просмотры"] + [str(i)+" д" for i in range(1, days_to_show+1)]
     
     df = table_views(table_day_views, days_to_show, selected_channel)
