@@ -159,7 +159,7 @@ def job(repo_owner, repo_name, branch):
         cursor = conn.cursor()
         print('cursor')
         
-        six_month_ago = datetime.now() - timedelta(days=180)
+        six_month_ago = '2025-01-01' #datetime.now() - timedelta(days=180)
 
         print(six_month_ago)
         # CHANNELS
