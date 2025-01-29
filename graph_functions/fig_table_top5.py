@@ -124,7 +124,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         [
             ColumnDefinition(
                 name="ID поста (1)",
-                textprops={"ha": "center", "weight": "bold", "fontsize":15},
+                textprops={"ha": "center", "weight": "bold", "fontsize":18},
                 width=0.6,
                 group="Просмотры",
             ),
@@ -143,7 +143,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
             ColumnDefinition(
                 name="ID поста (2)",
-                textprops={"ha": "right", "weight": "bold", "fontsize":15},
+                textprops={"ha": "right", "weight": "bold", "fontsize":18},
                 width=0.6,
                 group="Реакции",
             ),
@@ -161,7 +161,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
             ColumnDefinition(
                 name="ID поста (3)",
-                textprops={"ha": "right", "weight": "bold", "fontsize":15},
+                textprops={"ha": "right", "weight": "bold", "fontsize":18},
                 width=0.6,
                 group="Вовлеченность",
             ),
@@ -179,7 +179,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
                     ColumnDefinition(
                 name="ID поста (4)",
-                textprops={"ha": "right", "weight": "bold", "fontsize":15},
+                textprops={"ha": "right", "weight": "bold", "fontsize":18},
                 width=0.6,
                 group="Подписчики после публикации поста",
             ),
@@ -202,7 +202,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
     df_final = correct_data(df)
     
-    fig, ax = plt.subplots(figsize=(30, 38))
+    fig, ax = plt.subplots(figsize=(35, 38))
     
     # Set the figure and axes background to orange
     fig.patch.set_facecolor(bgcolor) ##f5dfbf #'#FFA500'
@@ -214,7 +214,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         row_dividers=True,
         footer_divider=True,
         ax=ax,
-        textprops={"fontsize": 14, 'color': word_color},
+        textprops={"fontsize": 16, 'color': word_color},
         row_divider_kw={"linewidth": 1, "linestyle": (0, (1, 5))},
         col_label_divider_kw={"linewidth": 1, "linestyle": "-"},
         column_border_kw={"linewidth": 1, "linestyle": "-"},
@@ -222,13 +222,13 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         
     # Adding the bold header as a text annotation
     header_text = "\n Лидеры и аутсайдеры среди постов"
-    header_props = {'fontsize': 32, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
+    header_props = {'fontsize': 34, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
     # Adjusting the y-coordinate to bring the header closer to the table
     plt.text(0.5, 0.91, header_text, transform=fig.transFigure, **header_props)
     
     # Adding the subtitle at the top in gray
     subtitle_text = "\n Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности (Реакции/Просмотры) и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории. "
-    subtitle_props = {'fontsize': 20, 'va': 'center', 'ha': 'center', 'color': word_color}
+    subtitle_props = {'fontsize': 24, 'va': 'center', 'ha': 'center', 'color': word_color}
     plt.text(0.5, 0.89, subtitle_text, transform=fig.transFigure, **subtitle_props)
     
     # Adding the footer text
