@@ -209,7 +209,7 @@ def job(repo_owner, repo_name, branch):
         subscribers_csv = dataframe_to_csv(subs)
         post_view_csv = dataframe_to_csv(post_view)
         gr_pvr_csv = dataframe_to_csv(gr_pvr)
-        table_day_views_csv = dataframe_to_csv(create_table(post_view)) 
+        table_day_views_csv = dataframe_to_csv(create_table(channels, posts, post_view)) 
         
         
 
