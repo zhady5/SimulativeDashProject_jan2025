@@ -301,26 +301,26 @@ def main():
             st.empty()          
         with button_col2:
             if st.button("3д", key="3d"):
-                st.session_state.button_state = "3д"
+                st.session_state.heatmap_button_state = "3д"
         with button_col3:
             if st.button("1н", key="1w"):
-                st.session_state.button_state = "1н"
+                st.session_state.heatmap_button_state = "1н"
         with button_col4:
             if st.button("1м", key="1m"):
-                st.session_state.button_state = "1м"
+                st.session_state.heatmap_button_state = "1м"
         with button_col5:
             if st.button("all (6м)", key="6m"):
-                st.session_state.button_state = "all (6м)"
+                st.session_state.heatmap_button_state = "all (6м)"
         st.markdown('</div>', unsafe_allow_html=True)
 
         # Фильтрация данных в зависимости от выбранной кнопки
-        if st.session_state.button_state == "3д":
+        if st.session_state.heatmap_button_state == "3д":
             filtered_df = posts[(posts.channel_name == selected_channel) &
                                 (pd.to_datetime(posts.date) >= date_ago('days', 2))]
-        elif st.session_state.button_state == "1н":
+        elif st.session_state.heatmap_button_state == "1н":
             filtered_df = posts[(posts.channel_name == selected_channel) &
                                 (pd.to_datetime(posts.date) >= date_ago('weeks', 1))]
-        elif st.session_state.button_state == "1м":
+        elif st.session_state.heatmap_button_state == "1м":
             filtered_df = posts[(posts.channel_name == selected_channel) &
                                 (pd.to_datetime(posts.date) >= date_ago('months', 1))]
         else:  # "all (6м)"
