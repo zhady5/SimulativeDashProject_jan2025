@@ -19,7 +19,7 @@ from plottable.cmap import normed_cmap
 #from plottable.formatters import decimal_to_percent
 from plottable.plots import circled_image # image
 
-
+figsize = (40,50)
 def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
     # Проверяем, что дата присутствует и не пуста
     if channel is None  or len(posts) == 0 or len(subs) == 0 or len(gr_pvr) == 0:
@@ -202,7 +202,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
     df_final = correct_data(df)
     
-    fig, ax = plt.subplots() #figsize=(35, 38)
+    fig, ax = plt.subplots(figsize=figsize) #
     
     # Set the figure and axes background to orange
     fig.patch.set_facecolor(bgcolor) ##f5dfbf #'#FFA500'
