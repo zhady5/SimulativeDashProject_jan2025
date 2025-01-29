@@ -223,12 +223,12 @@ def job(repo_owner, repo_name, branch):
         #branch = "master"
 
         file_paths = {
-            "channels": "prepared_tables/channels.csv",
-            "posts": "prepared_tables/posts.csv",
-            "subscribers": "prepared_tables/subscribers.csv",
-            "post_view": "prepared_tables/post_view.csv",
-            "gr_pvr": "prepared_tables/gr_pvr.csv",
-            "table_day_views": "prepared_tables/table_day_views.csv",
+            "channels": "prepared_tables_jan2025/channels.csv",
+            "posts": "prepared_tables_jan2025/posts.csv",
+            "subscribers": "prepared_tables_jan2025/subscribers.csv",
+            "post_view": "prepared_tables_jan2025/post_view.csv",
+            "gr_pvr": "prepared_tables_jan2025/gr_pvr.csv",
+            "table_day_views": "prepared_tables_jan2025/table_day_views.csv",
         }
 
         for table, file_path in file_paths.items():
