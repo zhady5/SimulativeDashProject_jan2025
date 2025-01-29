@@ -322,8 +322,16 @@ def main():
                                 (pd.to_datetime(posts.date) >= date_ago('months', 6))]
 
         # Отображение тепловой карты
-        st.plotly_chart(create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color), use_container_width=True)
-
+        #st.plotly_chart(create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color), use_container_width=True)
+        
+        if len(filtered_df) != 0:
+            fig_heatmap = create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color)
+            if isinstance(fig_heatmap, go.Figure):
+                st.plotly_chart(fig_heatmap, use_container_width=True)
+            else:
+                st.write('график не собрался')
+        else:
+            st.write('По выбранному периоду график не может собраться. Проверьте дату обновления данных.')
 
         #---------------------------------------------------------------------------------------------------------------------
         #Таблица с постами Лидеры и оутсайдеры
