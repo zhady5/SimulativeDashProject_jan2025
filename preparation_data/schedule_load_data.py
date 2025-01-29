@@ -26,7 +26,7 @@ logger = logging.getLogger(__name__)
 #load_dotenv(dotenv_path='.gitignore/.env') 
 
 repo_owner = "zhady5"
-repo_name = "SimulativeDashProject_dec2024"
+repo_name = "SimulativeDashProject_jan2025"
 branch = "master"
 
 
