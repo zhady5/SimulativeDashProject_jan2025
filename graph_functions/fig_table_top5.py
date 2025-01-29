@@ -19,7 +19,7 @@ from plottable.cmap import normed_cmap
 #from plottable.formatters import decimal_to_percent
 from plottable.plots import circled_image # image
 
-figsize = (20,25)
+figsize = (25,30)
 header_size = 25
 subheader_size = 18
 text_size = 16
