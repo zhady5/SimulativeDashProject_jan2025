@@ -26,4 +26,4 @@ jobs:
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_PORT: ${{ secrets.DB_PORT }}
         DASH_TOKEN:  ${{ secrets.DASH_TOKEN }}
-      run: python preparation_data/schedule_load_data.py
+      run: python preparation_data/schedule_load_data_jan2025.py
