@@ -146,8 +146,14 @@ def main():
 
 
             # Инициализация состояния кнопок
+    #if 'button_state' not in st.session_state:
+    #    st.session_state.button_state = "all (6м)"
+
+    # Создаем два разных состояния для двух графиков
     if 'button_state' not in st.session_state:
         st.session_state.button_state = "all (6м)"
+    if 'heatmap_button_state' not in st.session_state:
+        st.session_state.heatmap_button_state = "all (6м)"
 
 
 
