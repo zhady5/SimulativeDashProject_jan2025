@@ -202,7 +202,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
     df_final = correct_data(df)
     
-    fig, ax = plt.subplots(figsize=(30, 32))
+    fig, ax = plt.subplots(figsize=(30, 38))
     
     # Set the figure and axes background to orange
     fig.patch.set_facecolor(bgcolor) ##f5dfbf #'#FFA500'
