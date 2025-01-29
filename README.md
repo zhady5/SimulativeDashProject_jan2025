@@ -43,8 +43,8 @@
 ## Инструкция по установке
 
 1. Клонирование репозитория:
-  git clone [https://github.com/zhady5/SimulativeDashProject_dec2024.git](https://github.com/zhady5/SimulativeDashProject_dec2024.git)
-  cd SimulativeDashProject_dec2024
+  git clone [https://github.com/zhady5/SimulativeDashProject_dec2024.git](https://github.com/zhady5/SimulativeDashProject_jan2025.git)
+  cd SimulativeDashProject_jan2025
 2. Создание виртуального окружения:
   python -m venv venv
   source venv/bin/activate  # Для Windows: venv\Scripts\activate
