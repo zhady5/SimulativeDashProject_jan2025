@@ -23,8 +23,8 @@ figsize = (28,35)
 header_size = 28
 subheader_size = 22
 text_size = 16
-text_idx_size = 16
-text_value_size = 18
+text_idx_size = 19
+text_value_size = 19
 
 
 def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
