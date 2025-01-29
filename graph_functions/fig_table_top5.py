@@ -20,10 +20,10 @@ from plottable.cmap import normed_cmap
 from plottable.plots import circled_image # image
 
 figsize = (40,50)
-header_size = 34
-subheader_size = 24
-text_size = 16
-text_idx_size = 18
+header_size = 44
+subheader_size = 30
+text_size = 18
+text_idx_size = 22
 text_value_size = 25
 
 
