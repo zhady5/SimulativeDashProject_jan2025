@@ -258,6 +258,8 @@ def main():
             fig_bubble = create_bubble_fig(filtered_bubble, bgcolor, word_color, colors_gradient_bubble)
             if isinstance(fig_bubble, go.Figure):
                 st.plotly_chart(fig_bubble, use_container_width=True)
+                # Остановка выполнения до следующего блока
+                st.stop()
             else:
                 st.write('график не собрался')
         else:
@@ -336,6 +338,8 @@ def main():
             fig_heatmap = create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color)
             if isinstance(fig_heatmap, go.Figure):
                 st.plotly_chart(fig_heatmap, use_container_width=True)
+                # Остановка выполнения до следующего блока
+                st.stop()
             else:
                 st.write('график не собрался')
         else:
@@ -344,6 +348,8 @@ def main():
         #---------------------------------------------------------------------------------------------------------------------
         #Таблица с постами Лидеры и оутсайдеры
         st.pyplot(create_table_top5(posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors))
+        # Остановка выполнения до следующего блока
+        st.stop()
 
     #---------------------------------------------------------------------------------------------------------------------
     # Таблица - динамика просмотров
@@ -386,6 +392,8 @@ def main():
     st.write('')
     st.write('<p style="text-align: center;">Источник: Данные Telegram API</p>', unsafe_allow_html=True)
     st.write('<p style="text-align: center;">Обработка данных и дашборд - Альмира (@a1m_ra), Парсинг данных - Вероника (@chacter)</p>', unsafe_allow_html=True)
+    # Остановка выполнения до следующего блока
+    st.stop()
 
 if __name__ == "__main__":
     main()
