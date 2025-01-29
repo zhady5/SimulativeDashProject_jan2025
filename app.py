@@ -245,12 +245,15 @@ def main():
             filtered_bubble = gr_pvr[(gr_pvr.channel_name == selected_channel)&(pd.to_datetime(gr_pvr.post_datetime)>=date_ago('months', 1))]
         else:  # "all (6м)"
             filtered_bubble = gr_pvr[(gr_pvr.channel_name == selected_channel)&(pd.to_datetime(gr_pvr.post_datetime)>=date_ago('months', 6))]
-        
-        fig_bubble = create_bubble_fig(filtered_bubble, bgcolor, word_color, colors_gradient_bubble)
-        if isinstance(fig_bubble, go.Figure):
-            st.plotly_chart(fig_bubble, use_container_width=True)
+
+        if len(filtered_bubble ) != 0:
+            fig_bubble = create_bubble_fig(filtered_bubble, bgcolor, word_color, colors_gradient_bubble)
+            if isinstance(fig_bubble, go.Figure):
+                st.plotly_chart(fig_bubble, use_container_width=True)
+            else:
+                st.write('график не собрался')
         else:
-            st.write('график не собрался')
+            st.write('По выбранному периоду график не может собраться. Проверьте дату обновления данных.')
 
             #---------------------------------------------------------------------------------------------------------------------
         #Поисковик
