@@ -20,11 +20,11 @@ from plottable.cmap import normed_cmap
 from plottable.plots import circled_image # image
 
 figsize = (28,35)
-header_size = 25
-subheader_size = 18
+header_size = 28
+subheader_size = 22
 text_size = 16
-text_idx_size = 12
-text_value_size = 15
+text_idx_size = 16
+text_value_size = 18
 
 
 def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
