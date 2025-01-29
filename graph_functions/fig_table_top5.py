@@ -134,7 +134,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.95},
-                    "fontsize":15
+                    "fontsize":25
                 },
                 cmap=normed_cmap(df["Текущее количество"], cmap=cmap_colors, num_stds=1), #matplotlib.cm.plasma
                 group="Просмотры",
@@ -153,7 +153,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.65},
-                    "fontsize":15
+                    "fontsize":25
                 },
                 cmap=normed_cmap(df["Общее количество"], cmap=cmap_colors, num_stds=1),
                 group="Реакции",
@@ -189,7 +189,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.55},
-                    "fontsize":12
+                    "fontsize":20
                 },
                 cmap=normed_cmap(df["Подписались\Отписались"], cmap=cmap_colors, num_stds=1),
                 group="Подписчики после публикации поста",
@@ -222,13 +222,13 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         
     # Adding the bold header as a text annotation
     header_text = "\n Лидеры и аутсайдеры среди постов"
-    header_props = {'fontsize': 22, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
+    header_props = {'fontsize': 32, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
     # Adjusting the y-coordinate to bring the header closer to the table
     plt.text(0.5, 0.91, header_text, transform=fig.transFigure, **header_props)
     
     # Adding the subtitle at the top in gray
     subtitle_text = "\n Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности (Реакции/Просмотры) и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории. "
-    subtitle_props = {'fontsize': 16, 'va': 'center', 'ha': 'center', 'color': word_color}
+    subtitle_props = {'fontsize': 20, 'va': 'center', 'ha': 'center', 'color': word_color}
     plt.text(0.5, 0.89, subtitle_text, transform=fig.transFigure, **subtitle_props)
     
     # Adding the footer text
