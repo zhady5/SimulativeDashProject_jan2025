@@ -324,7 +324,22 @@ def main():
 
         #---------------------------------------------------------------------------------------------------------------------
         #Таблица с постами Лидеры и оутсайдеры
-        st.pyplot(create_table_top5(posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors))
+
+        
+            # Открываем изображение
+        image = create_table_top5(posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors)
+        
+        # Получаем ширину контейнера
+        container_width = st.get_current_column_width()
+            
+        # Вычисляем новую высоту, сохраняя пропорции
+        #aspect_ratio = image.height / image.width
+        #new_height = int(container_width * aspect_ratio)
+            
+        # Отображаем изображение на всю ширину контейнера
+        st.image("tableTopBottom.png", width=container_width)
+
+        st.pyplot(image)
 
     #---------------------------------------------------------------------------------------------------------------------
     # Таблица - динамика просмотров
