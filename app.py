@@ -330,7 +330,7 @@ def main():
         image = create_table_top5(posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors)
         
         # Получаем ширину контейнера
-        container_width = st.get_current_column_width()
+        container_width = st.column_config.get("width")
             
         # Вычисляем новую высоту, сохраняя пропорции
         #aspect_ratio = image.height / image.width
