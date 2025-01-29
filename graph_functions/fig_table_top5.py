@@ -246,24 +246,4 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
     fig.savefig("tableTopBottom.png", facecolor=ax.get_facecolor(), dpi=200)
 
-
-    # Открываем изображение
-image = Image.open("tableTopBottom.png")
-
-# Создаем контейнер
-with st.container():
-    # Получаем ширину контейнера
-    container_width = st.get_current_column_width()
-    
-    # Вычисляем новую высоту, сохраняя пропорции
-    aspect_ratio = image.height / image.width
-    new_height = int(container_width * aspect_ratio)
-    
-    # Отображаем изображение на всю ширину контейнера
-    st.image("tableTopBottom.png", width=container_width)
-
-    
-    # Закрываем текущий график
-    plt.close(fig)
-
     return fig
