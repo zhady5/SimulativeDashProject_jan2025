@@ -96,5 +96,5 @@ def styled_df(df, dark_color = '#8B0000'):
     ])
     
     # Изменение размера шрифта для всей таблицы
-    styled_df.set_properties(**{'font-size': '26pt'})
+    styled_df.set_properties(**{'font-size': '14pt'})
     return styled_df
