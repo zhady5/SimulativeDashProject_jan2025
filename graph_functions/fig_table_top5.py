@@ -20,6 +20,13 @@ from plottable.cmap import normed_cmap
 from plottable.plots import circled_image # image
 
 figsize = (40,50)
+header_size = 34
+subheader_size = 24
+text_size = 16
+text_idx_size = 18
+text_value_size = 25
+
+
 def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
     # Проверяем, что дата присутствует и не пуста
     if channel is None  or len(posts) == 0 or len(subs) == 0 or len(gr_pvr) == 0:
@@ -124,7 +131,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         [
             ColumnDefinition(
                 name="ID поста (1)",
-                textprops={"ha": "center", "weight": "bold", "fontsize":18},
+                textprops={"ha": "center", "weight": "bold", "fontsize":text_idx_size},
                 width=0.6,
                 group="Просмотры",
             ),
@@ -134,7 +141,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.95},
-                    "fontsize":25
+                    "fontsize": text_value_size
                 },
                 cmap=normed_cmap(df["Текущее количество"], cmap=cmap_colors, num_stds=1), #matplotlib.cm.plasma
                 group="Просмотры",
@@ -143,7 +150,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
             ColumnDefinition(
                 name="ID поста (2)",
-                textprops={"ha": "right", "weight": "bold", "fontsize":18},
+                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
                 width=0.6,
                 group="Реакции",
             ),
@@ -153,7 +160,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.65},
-                    "fontsize":25
+                    "fontsize":text_value_size
                 },
                 cmap=normed_cmap(df["Общее количество"], cmap=cmap_colors, num_stds=1),
                 group="Реакции",
@@ -161,7 +168,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
             ColumnDefinition(
                 name="ID поста (3)",
-                textprops={"ha": "right", "weight": "bold", "fontsize":18},
+                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
                 width=0.6,
                 group="Вовлеченность",
             ),
@@ -171,7 +178,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.55},
-                    "fontsize":15
+                    "fontsize": text_value_size
                 },
                 cmap=normed_cmap(df["Индекс"], cmap=cmap_colors, num_stds=1),
                 group="Вовлеченность",
@@ -179,7 +186,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
                     ColumnDefinition(
                 name="ID поста (4)",
-                textprops={"ha": "right", "weight": "bold", "fontsize":18},
+                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
                 width=0.6,
                 group="Подписчики после публикации поста",
             ),
@@ -189,7 +196,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                 textprops={
                     "ha": "center",
                     "bbox": {"boxstyle": "circle", "pad": 0.55},
-                    "fontsize":20
+                    "fontsize":text_value_size - 5
                 },
                 cmap=normed_cmap(df["Подписались\Отписались"], cmap=cmap_colors, num_stds=1),
                 group="Подписчики после публикации поста",
@@ -214,7 +221,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         row_dividers=True,
         footer_divider=True,
         ax=ax,
-        textprops={"fontsize": 16, 'color': word_color},
+        textprops={"fontsize": text_size, 'color': word_color},
         row_divider_kw={"linewidth": 1, "linestyle": (0, (1, 5))},
         col_label_divider_kw={"linewidth": 1, "linestyle": "-"},
         column_border_kw={"linewidth": 1, "linestyle": "-"},
@@ -222,13 +229,13 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         
     # Adding the bold header as a text annotation
     header_text = "\n Лидеры и аутсайдеры среди постов"
-    header_props = {'fontsize': 34, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
+    header_props = {'fontsize': header_size, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
     # Adjusting the y-coordinate to bring the header closer to the table
     plt.text(0.5, 0.91, header_text, transform=fig.transFigure, **header_props)
     
     # Adding the subtitle at the top in gray
     subtitle_text = "\n Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности (Реакции/Просмотры) и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории. "
-    subtitle_props = {'fontsize': 24, 'va': 'center', 'ha': 'center', 'color': word_color}
+    subtitle_props = {'fontsize': subheader_size, 'va': 'center', 'ha': 'center', 'color': word_color}
     plt.text(0.5, 0.89, subtitle_text, transform=fig.transFigure, **subtitle_props)
     
     # Adding the footer text
