@@ -79,7 +79,10 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         df = pd.concat([data_views,  data_react_sum,  data_idx_active, data_post_subs], axis=1)
         
         
-        id1, val1, id2, val2, id3, val3, id4, val4  = 'ID поста (1)' , 'Текущее количество просмотров', 'ID поста (2)' , 'Общее количество реакций','ID поста (3)' , 'Индекс вовлеченности','ID поста (4)' , 'Подписались \Отписались'
+        id1, val1 = 'ID поста (1)' , 'Текущее количество просмотров'
+        id2, val2 = 'ID поста (2)' , 'Общее количество реакций'
+        id3, val3 = 'ID поста (3)' , 'Индекс вовлеченности'
+        id4, val4 = 'ID поста (4)' , 'Подписались \Отписались'
         
         df.columns = [f'{id1}', f'{val1}', f'{id2}', f'{val2}', f'{id3}', f'{val3}', f'{id4}', f'{val4}' ]
     
@@ -123,7 +126,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     )   
     #["#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"]
     
-    basic_services_cols = ['Текущее количество просмотров', 'Общее количество реакций', 'Индекс вовлеченности', 'Подписались \Отписались']
+    basic_services_cols = [ f'{val1}', f'{val2}',  f'{val3}',  f'{val4}' ]
     
     df_final = df.copy()
 
@@ -252,7 +255,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px;text-align: center;border: 1px solid black;color: #666; } .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
     #html += f"<h1 style='text-align: center; color: {word_color}; font-size: {header_size}px;'>Лидеры и аутсайдеры среди постов</h1>"
     #html += f"<h2 style='text-align: center; color: {word_color}; font-size: {subheader_size}px;'>{channel}</h2>"
-    html += "<table><tr><th>ID поста (1)</th><th>Текущее количество просмотров</th><th>ID поста (2)</th><th>Общее количество реакций</th><th>ID поста (3)</th><th>Индекс вовлеченности</th><th>ID поста (4)</th><th>Подписались \Отписались</th></tr>"
+    html += f"<table><tr><th>ID поста (1)</th><th>{val1}</th><th>ID поста (2)</th><th>{val2}</th><th>ID поста (3)</th><th>{val3}</th><th>ID поста (4)</th><th>{val4}</th></tr>"
 
     # Calculate global min and max for each column
     global_min_max = {}
@@ -275,7 +278,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                         
                     circle_size = int(35 + normalized_value * 30)
                     circle_color = plt.cm.autumn(normalized_value)[:3]
-                    if col != 'Индекс вовлеченности':
+                    if col != val3:
                         value = int(value)
                     circle_color_hex = "#{:02x}{:02x}{:02x}".format(int(circle_color[0]*255), int(circle_color[1]*255), int(circle_color[2]*255))
                     html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};color: #333; font-size: {font_size}px;'>{value}</div></td>"
