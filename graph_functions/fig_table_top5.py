@@ -276,7 +276,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                         
                     circle_size = int(35 + normalized_value * 30)
                     circle_color = plt.cm.autumn(normalized_value)[:3]
-                    if col != 'Индекс':
+                    if col != 'Индекс вовлеченности':
                         value = int(value)
                     circle_color_hex = "#{:02x}{:02x}{:02x}".format(int(circle_color[0]*255), int(circle_color[1]*255), int(circle_color[2]*255))
                     html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};color: #333; font-size: {font_size}px;'>{value}</div></td>"
