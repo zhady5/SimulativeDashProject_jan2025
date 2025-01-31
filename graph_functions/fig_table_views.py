@@ -43,7 +43,7 @@ def table_views(table_day_views, max_days, channel):
     return sub_tab_final.drop_duplicates()
 
 
-def styled_df(df, dark_color = '#8B0000'):
+def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
     def contains_substring(string, substring):
         # Если подстрока найдена в исходной строке, возвращаем True
         if substring in string:
@@ -89,7 +89,7 @@ def styled_df(df, dark_color = '#8B0000'):
     def add_bar(s):
         n = s.name
         if n == "Текущие просмотры":
-            return [f'background: linear-gradient(90deg,  #006a4e {:.1f}%, white {:.1f}%)'.format( v, 100-v) for v in (s / s.max() * 100)]
+            return ['background: linear-gradient(90deg,  {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (s / s.max() * 100)]
         return [''] * len(s)            
     
     # Применение функции стилей ко всем ячейкам DataFrame
