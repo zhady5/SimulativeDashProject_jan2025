@@ -95,7 +95,7 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
         log_values = [log_scale(v) for v in s]
         max_log_value = max(log_values)
         if n == "Текущие просмотры":
-            return ['background: linear-gradient(90deg,  {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (log_values / max_log_value) * 100 ) ] #(s / s.max() * 100)
+            return ['background: linear-gradient(90deg,  {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (log_values / max_log_value * 100 ) ] #(s / s.max() * 100)
         return [''] * len(s)            
     
     # Применение функции стилей ко всем ячейкам DataFrame
