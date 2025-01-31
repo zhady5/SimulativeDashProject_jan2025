@@ -81,7 +81,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         
        id1, val1, id2, val2, id3, val3, id4, val4  = 'ID поста (1)' , 'Текущее количество просмотров', 'ID поста (2)' , 'Общее количество реакций','ID поста (3)' , 'Индекс вовлеченности','ID поста (4)' , 'Подписались \Отписались'
         
-        df.columns = [id1, val1, id2, val2, id3, val3, id4, val4 ]
+        df.columns = [f'{id1}', f'{val1}', f'{id2}', f'{val2}', f'{id3}', f'{val3}', f'{id4}', f'{val4}' ]
     
         return df
     
