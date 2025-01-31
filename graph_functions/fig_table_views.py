@@ -43,7 +43,7 @@ def table_views(table_day_views, max_days, channel):
     return sub_tab_final.drop_duplicates()
 
 
-def styled_df(df, dark_color = '#8B0000'):
+def styled_df(df, dark_color = '#8B0000', clr="#006a4e"):
     def contains_substring(string, substring):
         # Если подстрока найдена в исходной строке, возвращаем True
         if substring in string:
@@ -85,9 +85,15 @@ def styled_df(df, dark_color = '#8B0000'):
         # Для всех остальных случаев оставляем стиль по умолчанию
         else:
             return ''
+     # Создаем мини-гистограммы для колонки "Текущие просмотры"
+    def add_bar(s):
+        n = s.name
+        if n == "Текущие просмотры":
+            return [f'background: linear-gradient(90deg, {clr} {:.1f}%, white {:.1f}%)'.format(v, 100-v) for v in (s / s.max() * 100)]
+        return [''] * len(s)            
     
     # Применение функции стилей ко всем ячейкам DataFrame
-    styled_df = df.style.map(style_contains)
+    styled_df = df.style.map(style_contains).apply(add_bar, axis=0)
     
       # Установка стиля для заголовков
     styled_df.set_table_styles([
