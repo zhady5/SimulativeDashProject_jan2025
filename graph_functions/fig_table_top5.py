@@ -25,6 +25,7 @@ subheader_size = 22
 text_size = 16
 text_idx_size = 19
 text_value_size = 19
+font_size = 14
 
 
 def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
@@ -277,7 +278,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                     if col != 'Индекс':
                         value = int(value)
                     circle_color_hex = "#{:02x}{:02x}{:02x}".format(int(circle_color[0]*255), int(circle_color[1]*255), int(circle_color[2]*255))
-                    html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};'>{value}</div></td>"
+                    html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};'font-size: {font_size}px;'>{value}</div></td>"
                 else:
                     html += f"<td>{''}</td>"
             elif np.isnan(value):
@@ -285,7 +286,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
             else:
                 if isinstance(value, (int, float)):
                     value = int(value)
-                html += f"<td>{value}</td>"
+                html +=  f"<td style='font-size: {font_size}px;'>{value}</td>" #f"<td>{value}</td>"
         html += "</tr>"
 
     html += "</table>"
