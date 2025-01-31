@@ -87,7 +87,7 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
         else:
             return ''
      # Создаем мини-гистограммы для колонки "Текущие просмотры"
-    def add_bar(s, clr='#006a4e'):
+    def add_bar(s):
         n = s.name
         if n == "Текущие просмотры":
             def log_scale(value):
