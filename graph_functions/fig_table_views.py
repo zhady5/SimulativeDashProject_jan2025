@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
+import math
 
 #def create_table(post_view):
 #  #groupping
@@ -86,10 +87,15 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
         else:
             return ''
      # Создаем мини-гистограммы для колонки "Текущие просмотры"
+    def log_scale(value):
+        return math.log(value + 1) if value > 0 else 0
+    
     def add_bar(s):
         n = s.name
+        log_values = [log_scale(v) for v in s]
+        max_log_value = max(log_values)
         if n == "Текущие просмотры":
-            return ['background: linear-gradient(90deg,  {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (s / s.max() * 100)]
+            return ['background: linear-gradient(90deg,  {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (log_values / max_log_value) * 100 ) ] #(s / s.max() * 100)
         return [''] * len(s)            
     
     # Применение функции стилей ко всем ячейкам DataFrame
