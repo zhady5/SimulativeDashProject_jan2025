@@ -346,7 +346,7 @@ def main():
         #st.pyplot(create_table_top5(posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors))
         st.markdown('<div class="subheader"><h2>Лидеры и аутсайдеры среди постов</h2></div>', unsafe_allow_html=True)
         st.markdown('<div class="custom-text">Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории.</div>', unsafe_allow_html=True)
-        st.wrtte('')
+        st.write('')
         
         create_table_top5(posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors)
     #---------------------------------------------------------------------------------------------------------------------
