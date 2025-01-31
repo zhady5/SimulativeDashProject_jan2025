@@ -260,7 +260,8 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     for col in basic_services_cols:
         if df_final[col].dtype in [np.float64, np.int64]:
             global_min_max[col] = (df_final[col].min(), df_final[col].max())
-
+            
+    html += "<tr><td colspan='8' class='separator'></td></tr>"
     for index, row in df_final.iterrows():
         html += "<tr>"
         for i, col in enumerate(df_final.columns):
@@ -288,6 +289,8 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                     value = int(value)
                 html +=  f"<td style='font-size: {font_size}px; color: #333'>{value}</td>" #f"<td>{value}</td>"
         html += "</tr>"
+        if index == 4:
+            html += "<tr><td colspan='8' class='separator'></td></tr>"
 
     html += "</table>"
 
