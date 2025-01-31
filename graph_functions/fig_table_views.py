@@ -87,17 +87,20 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
         else:
             return ''
      # Создаем мини-гистограммы для колонки "Текущие просмотры"
-    def log_scale(value):
-        return math.log(int(value) + 1) if int(value) > 0 else 0
-    
-    def add_bar(s):
+    def add_bar(s, clr='#006a4e'):
         n = s.name
         if n == "Текущие просмотры":
-            log_values = [log_scale(v) for v in s]
-            max_log_value = max(log_values)
-            return ['background: linear-gradient(90deg,  {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (log_values / max_log_value * 100 ) ] #(s / s.max() * 100)
-        return [''] * len(s)            
+            def log_scale(value):
+                try:
+                    return math.log(float(value) + 1) if float(value) > 0 else 0
+                except (ValueError, TypeError):
+                    return 0
     
+            log_values = [log_scale(v) for v in s]
+            max_log_value = max(log_values) if log_values else 1  # Avoid division by zero
+            return ['background: linear-gradient(90deg, {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) 
+                    for v in (log_values / max_log_value * 100)]
+        return [''] * len(s)
     # Применение функции стилей ко всем ячейкам DataFrame
     styled_df = df.style.map(style_contains).apply(add_bar, axis=0)
     
