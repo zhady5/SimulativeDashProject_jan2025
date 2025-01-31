@@ -81,7 +81,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         df.columns = ['ID поста (1)' , 'Текущее количество'
                       ,'ID поста (2)' , 'Общее количество'
                        ,'ID поста (3)' , 'Индекс'
-                     ,'ID поста (4)' , 'Подписались\Отписались'
+                     ,'ID поста (4)' , 'Подписались \Отписались'
                      ]
     
         return df
@@ -124,7 +124,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     )   
     #["#ffffff", "#f2fbd2", "#c9ecb4", "#93d3ab", "#35b0ab"]
     
-    basic_services_cols = ['Текущее количество', 'Общее количество', 'Индекс', 'Подписались\Отписались']
+    basic_services_cols = ['Текущее количество', 'Общее количество', 'Индекс', 'Подписались \Отписались']
     
     df_final = df.copy()
 
@@ -253,7 +253,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px;text-align: center;border: 1px solid black;color: #666; } .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
     #html += f"<h1 style='text-align: center; color: {word_color}; font-size: {header_size}px;'>Лидеры и аутсайдеры среди постов</h1>"
     #html += f"<h2 style='text-align: center; color: {word_color}; font-size: {subheader_size}px;'>{channel}</h2>"
-    html += "<table><tr><th>ID поста (1)</th><th>Текущее количество</th><th>ID поста (2)</th><th>Общее количество</th><th>ID поста (3)</th><th>Индекс</th><th>ID поста (4)</th><th>Подписались\Отписались</th></tr>"
+    html += "<table><tr><th>ID поста (1)</th><th>Текущее количество</th><th>ID поста (2)</th><th>Общее количество</th><th>ID поста (3)</th><th>Индекс</th><th>ID поста (4)</th><th>Подписались \Отписались</th></tr>"
 
     # Calculate global min and max for each column
     global_min_max = {}
