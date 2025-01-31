@@ -89,7 +89,7 @@ def styled_df(df, dark_color = '#8B0000', clr="#006a4e"):
     def add_bar(s):
         n = s.name
         if n == "Текущие просмотры":
-            return [f'background: linear-gradient(90deg, {clr} {:.1f}%, white {:.1f}%)'.format(v, 100-v) for v in (s / s.max() * 100)]
+            return [f'background: linear-gradient(90deg, {} {:.1f}%, white {:.1f}%)'.format(clr, v, 100-v) for v in (s / s.max() * 100)]
         return [''] * len(s)            
     
     # Применение функции стилей ко всем ячейкам DataFrame
