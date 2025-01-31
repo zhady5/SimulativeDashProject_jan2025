@@ -126,128 +126,128 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     basic_services_cols = ['Текущее количество', 'Общее количество', 'Индекс', 'Подписались\Отписались']
     
     df_final = df.copy()
-    #PiYG
-   ''' col_defs = (
-        [
-            ColumnDefinition(
-                name="ID поста (1)",
-                textprops={"ha": "center", "weight": "bold", "fontsize":text_idx_size},
-                width=0.6,
-                group="Просмотры",
-            ),
-              ColumnDefinition(
-                name="Текущее количество",
-                width=0.65,
-                textprops={
-                    "ha": "center",
-                    "bbox": {"boxstyle": "circle", "pad": 0.95},
-                    "fontsize": text_value_size
-                },
-                cmap=normed_cmap(df["Текущее количество"], cmap=cmap_colors, num_stds=1), #matplotlib.cm.plasma
-                group="Просмотры",
-    
-            ),
-    
-            ColumnDefinition(
-                name="ID поста (2)",
-                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
-                width=0.6,
-                group="Реакции",
-            ),
-                 ColumnDefinition(
-                name="Общее количество",
-                width=0.65,
-                textprops={
-                    "ha": "center",
-                    "bbox": {"boxstyle": "circle", "pad": 0.65},
-                    "fontsize":text_value_size
-                },
-                cmap=normed_cmap(df["Общее количество"], cmap=cmap_colors, num_stds=1),
-                group="Реакции",
-            ),
-    
-            ColumnDefinition(
-                name="ID поста (3)",
-                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
-                width=0.6,
-                group="Вовлеченность",
-            ),
-              ColumnDefinition(
-                name="Индекс",
-                width=0.65,
-                textprops={
-                    "ha": "center",
-                    "bbox": {"boxstyle": "circle", "pad": 0.55},
-                    "fontsize": text_value_size
-                },
-                cmap=normed_cmap(df["Индекс"], cmap=cmap_colors, num_stds=1),
-                group="Вовлеченность",
-            ),
-    
-                    ColumnDefinition(
-                name="ID поста (4)",
-                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
-                width=0.6,
-                group="Подписчики после публикации поста",
-            ),
-              ColumnDefinition(
-                name="Подписались\Отписались",
-                width=0.65,
-                textprops={
-                    "ha": "center",
-                    "bbox": {"boxstyle": "circle", "pad": 0.55},
-                    "fontsize":text_value_size - 5
-                },
-                cmap=normed_cmap(df["Подписались\Отписались"], cmap=cmap_colors, num_stds=1),
-                group="Подписчики после публикации поста",
-            ),
-            
-        ])
-    
-    plt.rcParams["font.family"] = ["DejaVu Sans"]
-    plt.rcParams["savefig.bbox"] = "tight"
-    
-    df_final = correct_data(df)
-    
-    fig, ax = plt.subplots(figsize=figsize) #
-    
-    # Set the figure and axes background to orange
-    fig.patch.set_facecolor(bgcolor) ##f5dfbf #'#FFA500'
-    ax.set_facecolor(bgcolor)
-    
-    table = Table(
-        df_final,
-        column_definitions=col_defs,
-        row_dividers=True,
-        footer_divider=True,
-        ax=ax,
-        textprops={"fontsize": text_size, 'color': word_color},
-        row_divider_kw={"linewidth": 1, "linestyle": (0, (1, 5))},
-        col_label_divider_kw={"linewidth": 1, "linestyle": "-"},
-        column_border_kw={"linewidth": 1, "linestyle": "-"},
-    )
-        
-    # Adding the bold header as a text annotation
-    header_text = "\n Лидеры и аутсайдеры среди постов"
-    header_props = {'fontsize': header_size, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
-    # Adjusting the y-coordinate to bring the header closer to the table
-    plt.text(0.5, 0.91, header_text, transform=fig.transFigure, **header_props)
-    
-    # Adding the subtitle at the top in gray
-    subtitle_text = "\n Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности (Реакции/Просмотры) и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории. "
-    subtitle_props = {'fontsize': subheader_size, 'va': 'center', 'ha': 'center', 'color': word_color}
-    plt.text(0.5, 0.89, subtitle_text, transform=fig.transFigure, **subtitle_props)
-    
-    # Adding the footer text
-    #footer_text = "Источник: Данные Telegram API \n Обработка данных и дашборд - Альмира (@a1m_ra), Парсинг данных - Вероника (@chacter) "
-    #footer_props = {'fontsize': 14, 'va': 'center', 'ha': 'center', 'color': word_color}
-    # Adjusting the y-coordinate to position the footer closer to the bottom of the figure
-    #plt.text(0.5, 0.09, footer_text, transform=fig.transFigure, **footer_props)
-    
-    fig.savefig("tableTopBottom.png", facecolor=ax.get_facecolor(), dpi=200)
 
-    return fig'''
-
+#    col_defs = (
+#        [
+#            ColumnDefinition(
+#                name="ID поста (1)",
+#                textprops={"ha": "center", "weight": "bold", "fontsize":text_idx_size},
+#                width=0.6,
+#                group="Просмотры",
+#            ),
+#              ColumnDefinition(
+#                name="Текущее количество",
+#                width=0.65,
+#                textprops={
+#                    "ha": "center",
+#                    "bbox": {"boxstyle": "circle", "pad": 0.95},
+#                    "fontsize": text_value_size
+#                },
+#                cmap=normed_cmap(df["Текущее количество"], cmap=cmap_colors, num_stds=1), #matplotlib.cm.plasma
+#                group="Просмотры",
+#    
+#            ),
+#    
+#            ColumnDefinition(
+#                name="ID поста (2)",
+#                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
+#                width=0.6,
+#                group="Реакции",
+#            ),
+#                 ColumnDefinition(
+#                name="Общее количество",
+#                width=0.65,
+#                textprops={
+#                    "ha": "center",
+#                    "bbox": {"boxstyle": "circle", "pad": 0.65},
+#                    "fontsize":text_value_size
+#                },
+#                cmap=normed_cmap(df["Общее количество"], cmap=cmap_colors, num_stds=1),
+#                group="Реакции",
+#            ),
+#    
+#            ColumnDefinition(
+#                name="ID поста (3)",
+#                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
+#                width=0.6,
+#                group="Вовлеченность",
+#            ),
+#              ColumnDefinition(
+#                name="Индекс",
+#                width=0.65,
+#                textprops={
+#                    "ha": "center",
+#                    "bbox": {"boxstyle": "circle", "pad": 0.55},
+#                    "fontsize": text_value_size
+#                },
+#                cmap=normed_cmap(df["Индекс"], cmap=cmap_colors, num_stds=1),
+#                group="Вовлеченность",
+#            ),
+#    
+#                    ColumnDefinition(
+#                name="ID поста (4)",
+#                textprops={"ha": "right", "weight": "bold", "fontsize": text_idx_size },
+#                width=0.6,
+#                group="Подписчики после публикации поста",
+#            ),
+#              ColumnDefinition(
+#                name="Подписались\Отписались",
+#                width=0.65,
+#                textprops={
+#                    "ha": "center",
+#                    "bbox": {"boxstyle": "circle", "pad": 0.55},
+#                    "fontsize":text_value_size - 5
+#                },
+#                cmap=normed_cmap(df["Подписались\Отписались"], cmap=cmap_colors, num_stds=1),
+#                group="Подписчики после публикации поста",
+#            ),
+#            
+#        ])
+#    
+#    plt.rcParams["font.family"] = ["DejaVu Sans"]
+#    plt.rcParams["savefig.bbox"] = "tight"
+#    
+#    df_final = correct_data(df)
+#    
+#    fig, ax = plt.subplots(figsize=figsize) #
+#    
+#    # Set the figure and axes background to orange
+#    fig.patch.set_facecolor(bgcolor) ##f5dfbf #'#FFA500'
+#    ax.set_facecolor(bgcolor)
+#    
+#    table = Table(
+#        df_final,
+#        column_definitions=col_defs,
+#        row_dividers=True,
+#        footer_divider=True,
+#        ax=ax,
+#        textprops={"fontsize": text_size, 'color': word_color},
+#        row_divider_kw={"linewidth": 1, "linestyle": (0, (1, 5))},
+#        col_label_divider_kw={"linewidth": 1, "linestyle": "-"},
+#        column_border_kw={"linewidth": 1, "linestyle": "-"},
+#    )
+#        
+#    # Adding the bold header as a text annotation
+#    header_text = "\n Лидеры и аутсайдеры среди постов"
+#    header_props = {'fontsize': header_size, 'fontweight': 'bold', 'va': 'center', 'ha': 'center', 'color': word_color}
+#    # Adjusting the y-coordinate to bring the header closer to the table
+#    plt.text(0.5, 0.91, header_text, transform=fig.transFigure, **header_props)
+#    
+#    # Adding the subtitle at the top in gray
+#    subtitle_text = "\n Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности (Реакции/Просмотры) и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории. "
+#    subtitle_props = {'fontsize': subheader_size, 'va': 'center', 'ha': 'center', 'color': word_color}
+#    plt.text(0.5, 0.89, subtitle_text, transform=fig.transFigure, **subtitle_props)
+#    
+#    # Adding the footer text
+#    #footer_text = "Источник: Данные Telegram API \n Обработка данных и дашборд - Альмира (@a1m_ra), Парсинг данных - Вероника (@chacter) "
+#    #footer_props = {'fontsize': 14, 'va': 'center', 'ha': 'center', 'color': word_color}
+#    # Adjusting the y-coordinate to position the footer closer to the bottom of the figure
+#    #plt.text(0.5, 0.09, footer_text, transform=fig.transFigure, **footer_props)
+#    
+#    fig.savefig("tableTopBottom.png", facecolor=ax.get_facecolor(), dpi=200)
+#
+#    return fig
+    
     # Generate HTML table with gradient circles around numbers
     html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px;text-align: center;border: 1px solid black;} .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
     html += f"<h1 style='text-align: center; color: {word_color}; font-size: {header_size}px;'>Лидеры и аутсайдеры среди постов</h1>"
