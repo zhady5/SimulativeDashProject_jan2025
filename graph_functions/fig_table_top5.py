@@ -125,9 +125,9 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
     basic_services_cols = ['Текущее количество', 'Общее количество', 'Индекс', 'Подписались\Отписались']
     
-    
+    df_final = df.copy()
     #PiYG
-    col_defs = (
+   ''' col_defs = (
         [
             ColumnDefinition(
                 name="ID поста (1)",
@@ -246,4 +246,48 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
     
     fig.savefig("tableTopBottom.png", facecolor=ax.get_facecolor(), dpi=200)
 
-    return fig
+    return fig'''
+
+    # Generate HTML table with gradient circles around numbers
+    html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px;text-align: center;border: 1px solid black;} .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
+    html += f"<h1 style='text-align: center; color: {word_color}; font-size: {header_size}px;'>Лидеры и аутсайдеры среди постов</h1>"
+    html += f"<h2 style='text-align: center; color: {word_color}; font-size: {subheader_size}px;'>{channel}</h2>"
+    html += "<table><tr><th>ID поста (1)</th><th>Текущее количество</th><th>ID поста (2)</th><th>Общее количество</th><th>ID поста (3)</th><th>Индекс</th><th>ID поста (4)</th><th>Подписались\Отписались</th></tr>"
+
+    # Calculate global min and max for each column
+    global_min_max = {}
+    for col in basic_services_cols:
+        if df_final[col].dtype in [np.float64, np.int64]:
+            global_min_max[col] = (df_final[col].min(), df_final[col].max())
+
+    for index, row in df_final.iterrows():
+        html += "<tr>"
+        for i, col in enumerate(df_final.columns):
+            value = row[col]
+            if isinstance(value, (int, float)) and not np.isnan(value) and col in basic_services_cols:
+                if df_final[col].dtype in [np.float64, np.int64]:
+                    min_val, max_val = global_min_max[col]
+                    if min_val != max_val:
+                        normalized_value = (value - min_val) / (max_val - min_val)
+                    else:
+                        normalized_value = 0
+                        
+                    circle_size = int(30 + normalized_value * 30)
+                    circle_color = plt.cm.autumn(normalized_value)[:3]
+                    if col != 'Индекс':
+                        value = int(value)
+                    circle_color_hex = "#{:02x}{:02x}{:02x}".format(int(circle_color[0]*255), int(circle_color[1]*255), int(circle_color[2]*255))
+                    html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};'>{value}</div></td>"
+                else:
+                    html += f"<td>{''}</td>"
+            elif np.isnan(value):
+                html += f"<td>{''}</td>"
+            else:
+                if isinstance(value, (int, float)):
+                    value = int(value)
+                html += f"<td>{value}</td>"
+        html += "</tr>"
+
+    html += "</table>"
+
+    st.markdown(html, unsafe_allow_html=True)
