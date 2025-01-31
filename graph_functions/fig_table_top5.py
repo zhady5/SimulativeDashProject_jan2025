@@ -79,7 +79,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
         df = pd.concat([data_views,  data_react_sum,  data_idx_active, data_post_subs], axis=1)
         
         
-       id1, val1, id2, val2, id3, val3, id4, val4  = 'ID поста (1)' , 'Текущее количество просмотров', 'ID поста (2)' , 'Общее количество реакций','ID поста (3)' , 'Индекс вовлеченности','ID поста (4)' , 'Подписались \Отписались'
+        id1, val1, id2, val2, id3, val3, id4, val4  = 'ID поста (1)' , 'Текущее количество просмотров', 'ID поста (2)' , 'Общее количество реакций','ID поста (3)' , 'Индекс вовлеченности','ID поста (4)' , 'Подписались \Отписались'
         
         df.columns = [f'{id1}', f'{val1}', f'{id2}', f'{val2}', f'{id3}', f'{val3}', f'{id4}', f'{val4}' ]
     
