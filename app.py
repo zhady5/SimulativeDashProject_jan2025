@@ -380,7 +380,7 @@ def main():
     df.index = df["ID поста"]
     df_subset = df[columns_to_show]
     
-    html_table = styled_df(df_subset, '#666').to_html()
+    html_table = styled_df(df_subset, '#666', graph_color).to_html()
     # Оборачиваем таблицу в div с фиксированной шириной и прокруткой
     scrollable_table = f'<div style="overflow-x: auto; overflow-y: auto; max-height: 700px;">{html_table}</div>'
     st.write(scrollable_table, unsafe_allow_html=True)  
