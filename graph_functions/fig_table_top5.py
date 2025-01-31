@@ -272,7 +272,7 @@ def create_table_top5(posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500
                     else:
                         normalized_value = 0
                         
-                    circle_size = int(30 + normalized_value * 30)
+                    circle_size = int(35 + normalized_value * 30)
                     circle_color = plt.cm.autumn(normalized_value)[:3]
                     if col != 'Индекс':
                         value = int(value)
