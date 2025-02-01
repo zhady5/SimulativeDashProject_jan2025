@@ -94,7 +94,7 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
             #return ['background: linear-gradient(90deg, {} {:.1f}%, white {:.1f}%)'.format(clr , (v / s.max() * 100), (100 - v / s.max() * 100)) for v in s]
             #return [f'width: {(v / s.max()) * 100}%; background-color: {clr};' for v in s ]
             return [
-            f'background-image: linear-gradient(to right, {clr}, transparent); background-size: {(v / s.max()) * 100}% 100%;'
+            f'background: linear-gradient(to right, {clr} 0%, {clr} {(v / s.max()) * 100}%, transparent {(v / s.max()) * 100}%, transparent 100%);'
             for v in s
         ]
         return [''] * len(s)
