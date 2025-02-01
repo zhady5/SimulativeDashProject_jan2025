@@ -91,8 +91,6 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
         n = s.name
         if n == "Текущие просмотры":
             # Используем генератор списков для выполнения деления для каждого элемента
-            #return ['background: linear-gradient(90deg, {} {:.1f}%, white {:.1f}%)'.format(clr , (v / s.max() * 100), (100 - v / s.max() * 100)) for v in s]
-            #return [f'width: {(v / s.max()) * 100}%; background-color: {clr};' for v in s ]
             return [
             f'background: linear-gradient(to right, {clr} 0%, {clr} {(v / s.max()) * 100}%, transparent {(v / s.max()) * 100}%, transparent 100%);'
             for v in s
