@@ -91,8 +91,8 @@ def styled_df(df, dark_color = '#8B0000', clr='#006a4e'):
         n = s.name
         if n == "Текущие просмотры":
             # Используем генератор списков для выполнения деления для каждого элемента
-            return ['background: linear-gradient(90deg, {} {:.1f}%, white {:.1f}%)'.format(clr
-                                                                        , (v / s.max() * 100), (100 - v / s.max() * 100)) for v in s]
+            #return ['background: linear-gradient(90deg, {} {:.1f}%, white {:.1f}%)'.format(clr , (v / s.max() * 100), (100 - v / s.max() * 100)) for v in s]
+            return [f'width: {(v / s.max()) * 100}%; background-color: {clr};' for v in s ]
         return [''] * len(s)
     # Применение функции стилей ко всем ячейкам DataFrame
     styled_df = df.style.map(style_contains).apply(add_bar, axis=0)
