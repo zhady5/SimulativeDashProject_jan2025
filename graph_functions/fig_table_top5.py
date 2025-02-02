@@ -275,9 +275,8 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
 #    return fig
     
     # Generate HTML table with gradient circles around numbers
-    html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px;text-align: center;border: 1px solid black;} .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
-    html += f"<h1 style='text-align: center; color: {word_color}; font-size: {header_size}px;'>Лидеры и аутсайдеры среди постов</h1>"
-    html += "<table><tr><th>ID поста (1)</th><th>Текущее количество</th><th>ID поста (2)</th><th>Общее количество</th><th>ID поста (3)</th><th>Индекс</th><th>ID поста (4)</th><th>Подписались\Отписались</th></tr>"
+    html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px;text-align: center;border: 1px solid black;color: #666; } .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
+    html += f"<table><tr><th>ID поста (1)</th><th>{val1}</th><th>ID поста (2)</th><th>{val2}</th><th>ID поста (3)</th><th>{val3}</th><th>ID поста (4)</th><th>{val4}</th></tr>"
     
     # Calculate global min and max for each column
     global_min_max = {}
@@ -312,12 +311,12 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
                     if col != val3:
                         value = int(value)
                     circle_color_hex = "#{:02x}{:02x}{:02x}".format(int(circle_color[0]*255), int(circle_color[1]*255), int(circle_color[2]*255))
-                    html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};'>{value}</div></td>"
+                    html += f"<td><div class='circle' style='width: {circle_size}px;height: {circle_size}px;line-height: {circle_size}px;background-color: {circle_color_hex};color: #333; font-size: {font_size}px;'>{value}</div></td>"
                 else:
-                    html += f"<td>{value}</td>"
+                    html +=  f"<td style='font-size: {font_size}px; color: #333'>{value}</td>" #f"<td>{value}</td>"
             else:
                 if 'link' not in col:
-                    html += f"<td style='font-size: {font_size}px;'>{value}</td>" #f"<td>{value}</td>"
+                    html +=  f"<td style='font-size: {font_size}px; color: #333'>{value}</td>" #f"<td>{value}</td>"
     
         html += "</tr>"
         # Add separator row after the 5th row
