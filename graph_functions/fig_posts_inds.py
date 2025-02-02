@@ -28,13 +28,13 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
     
     # Присваиваем нулевые значения для отсутствующих дат
     new_df = pd.DataFrame({'date': full_dates, 'cnt': 0})
-    
-    # Объединяем новые данные с исходными данными
-    merged_df = new_df.merge(subdf_posts, on=['date'], how='left').fillna(0)
-    
+
+
     subdf_posts = subdf_channel[(pd.to_datetime(subdf_channel['date']).dt.date >= start_time) & 
                                 (pd.to_datetime(subdf_channel['date']).dt.date <= end_time)]
-    
+    # Объединяем новые данные с исходными данными
+    merged_df = new_df.merge(subdf_posts, on=['date'], how='left').fillna(0)
+     
     
     # Создание subplots
     fig_posts = make_subplots(
