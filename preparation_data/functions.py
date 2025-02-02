@@ -100,7 +100,7 @@ def create_slider(data, col_date, channel, name_slider):
     data = data[data['channel_name'] == channel]    
     # Получаем минимальную и максимальную дату
     date_min = pd.to_datetime(data[col_date]).min().date()
-    date_max = datetime.today().date() #pd.to_datetime(data[col_date]).max().date()
+    date_max = datetime.datetime.today().date() #pd.to_datetime(data[col_date]).max().date()
     if date_min == date_max:
         date_min -= timedelta(days=1)
     
