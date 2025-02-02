@@ -316,7 +316,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
                     html +=  f"<td style='font-size: {font_size}px; color: #333'>{value}</td>" #f"<td>{value}</td>"
             else:
                 if 'link' not in col:
-                    html +=  f"<td>''</td>" #f"<td>{value}</td>"   f"<td style='font-size: {font_size}px; color: #333'>{value}</td>"
+                    html +=  f"<td>{''}</td>" #f"<td>{value}</td>"   f"<td style='font-size: {font_size}px; color: #333'>{value}</td>"
     
         html += "</tr>"
         # Add separator row after the 5th row
