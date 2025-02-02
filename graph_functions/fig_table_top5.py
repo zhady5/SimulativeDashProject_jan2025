@@ -41,7 +41,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
     
     posts_link = posts[['id', 'text', 'channel_id']].merge(channels[['id', 'username']].rename(
                                                                                         columns={'id':'channel_id'}), on = 'channel_id').copy()
-    posts_link.loc[:, 'text_short'] = posts_link.text.str[:20]
+    posts_link.loc[:, 'text_short'] = posts_link.text.str[:10]
     posts_link.loc[:, 'link'] = 'https://t.me/' +  posts_link.username + '/'+ posts_link.id.astype(str)
     posts_link.drop(['text', 'username'], axis=1, inplace=True)
     
@@ -295,9 +295,9 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
                 link_col = f"link ({i//3 + 1})"  # Calculate corresponding link column
                 link = row[link_col]
                 if pd.notna(value) and pd.notna(link):  # Check that both values are not NaN
-                    html += f'<td><a href="{link}" target="_blank">{value}</a></td>'
+                    html += f"<td style='font-size: {font_size}px;' ><a href='{link}' target='_blank'>{value}</a></td>"
                 else:
-                    html += f'<td>{value}</td>'  # If no link, just show the ID
+                    html += f"<td style='font-size: {font_size}px;' >{value}</td>"  # If no link, just show the ID
             elif isinstance(value, (int, float)) and not np.isnan(value) and col in basic_services_cols:
                 if df_final[col].dtype in [np.float64, np.int64]:
                     min_val, max_val = global_min_max[col]
