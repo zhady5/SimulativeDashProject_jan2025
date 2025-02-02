@@ -296,7 +296,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
                 link = row[link_col]
                 if pd.notna(value) and pd.notna(link):  # Check that both values are not NaN
                     html += f"<td style='font-size: {font_size}px;' ><a href='{link}' target='_blank'>{value}</a></td>"
-                elif isinstance(value, (int, float)) and np.isnan(link):
+                elif isinstance(value, (int, float)) and not np.isnan(value) and np.isnan(link):
                     html += f"<td style='font-size: {font_size}px;' >{int(value)}</td>"  # If no link, just show the ID
                 elif pd.notna(value) and not isinstance(value, (int, float)) and np.isnan(link): 
                     html += f"<td style='font-size: {font_size}px;' >{int(value)}</td>"
