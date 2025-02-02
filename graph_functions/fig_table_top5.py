@@ -131,9 +131,11 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
     df = gr_pvr[df_cols][gr_pvr.channel_name == channel].sort_values(by='current_views', ascending=False).drop_duplicates()
 
     if df.shape[0]==0:
-        df_cols_pw = ['channel_name', 'post_id','post_datetime', 'current_views']
+        df_cols_pw = ['channel_name', 'post_id','post_datetime',  'current_views']
+        df_cols_tl = ['channel_name', 'post_id','post_datetime', 'text_short', 'link', 'current_views']
         df = post_view[df_cols_pw][post_view.channel_name == channel].sort_values(by='current_views', ascending=False).drop_duplicates()
-        df = pd.concat([pd.DataFrame(columns=df_cols), df], axis=0)
+        df = df.merge(posts_link.rename(columns={'id':'post_id'}), on = 'post_id')[df_cols_tl]
+        df = pd.concat([pd.DataFrame(columns=df_cols_tl ), df], axis=0)
         for c in ['current_views', 'react_cnt_sum', 'idx_active']:
             df[c] = df[c].astype(float)
     
