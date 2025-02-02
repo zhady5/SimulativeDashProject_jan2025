@@ -33,9 +33,15 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
 
     subdf_posts = subdf_channel[(pd.to_datetime(subdf_channel['date']).dt.date >= start_time) & 
                                 (pd.to_datetime(subdf_channel['date']).dt.date <= end_time)]
-    # Объединяем новые данные с исходными данными
-    merged_df = new_df.merge(subdf_posts, on=['date'], how='left').fillna(0)
-     
+    # Используем pd.concat для объединения двух DataFrames
+    merged_df = pd.concat([new_df, subdf_posts], ignore_index=True)
+    
+    # Удаляем дубликаты строк по дате и заполняем NaN значениями из других строк
+    merged_df.drop_duplicates(subset='date', keep='first', inplace=True)
+    merged_df.set_index('date', inplace=True)
+    merged_df.fillna(0, inplace=True)
+    merged_df.reset_index(inplace=True)
+         
     
     # Создание subplots
     fig_posts = make_subplots(
@@ -50,15 +56,15 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
         vertical_spacing=0.13
     )
     
-    mean_cnt = subdf_posts.cnt.mean()
-    colors = [color_Nx_size if val >= 2 * mean_cnt else graph_color for val in subdf_posts['cnt']]
+    mean_cnt = merged_df.cnt.mean()
+    colors = [color_Nx_size if val >= 2 * mean_cnt else graph_color for val in merged_df['cnt']]
     
-    fig_posts.add_trace(go.Bar(x=subdf_posts.date, y=subdf_posts.cnt, marker_color=colors,
+    fig_posts.add_trace(go.Bar(x=merged_df.date, y=merged_df.cnt, marker_color=colors,
                                hovertemplate='%{x} <br>Публикаций: %{y}<extra></extra>'), row=1, col=1)
     
     period_names = dict({'days': 'вчера', 'weeks': 'неделю', 'months': 'месяц'})
     for i, period in enumerate([('days', 'days', 1), ('weeks', 'weeks', 1), ('months', 'months', 1)]):
-        current, previous = get_current_previous_sums(subdf_posts, 'cnt', period)
+        current, previous = get_current_previous_sums(merged_df, 'cnt', period)
         
         fig_posts.add_trace(
             go.Indicator(
