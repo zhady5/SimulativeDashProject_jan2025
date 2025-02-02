@@ -41,6 +41,7 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
     merged_df.set_index('date', inplace=True)
     merged_df.fillna(0, inplace=True)
     merged_df.reset_index(inplace=True)
+    merged_df.date = merged_df.date.astype(str)
          
     
     # Создание subplots
