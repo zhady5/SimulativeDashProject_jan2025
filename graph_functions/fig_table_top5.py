@@ -296,8 +296,12 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
                 link = row[link_col]
                 if pd.notna(value) and pd.notna(link):  # Check that both values are not NaN
                     html += f"<td style='font-size: {font_size}px;' ><a href='{link}' target='_blank'>{value}</a></td>"
+                elif isinstance(value, (int, float)) and np.isnan(link):
+                    html += f"<td style='font-size: {font_size}px;' >{int(value)}</td>"  # If no link, just show the ID
+                elif pd.notna(value) and not isinstance(value, (int, float)) and np.isnan(link): 
+                    html += f"<td style='font-size: {font_size}px;' >{int(value)}</td>"
                 else:
-                    html += f"<td style='font-size: {font_size}px;' >{value}</td>"  # If no link, just show the ID
+                    html +=  f"<td>{''}</td>"
             elif isinstance(value, (int, float)) and not np.isnan(value) and col in basic_services_cols:
                 if df_final[col].dtype in [np.float64, np.int64]:
                     min_val, max_val = global_min_max[col]
