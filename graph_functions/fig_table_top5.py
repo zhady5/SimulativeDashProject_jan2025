@@ -275,7 +275,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
 #    return fig
     
     # Generate HTML table with gradient circles around numbers
-    html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 0px !important ;text-align: center;border: 1px solid black;color: #666; font-size: 12px;} .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
+    html = "<style>table {width: 100%; border-collapse: collapse;} th, td {padding: 8px 0 !important ;text-align: center;border: 1px solid black;color: #666; font-size: 12px;} .circle {display: inline-block;border-radius: 50%;text-align: center;}</style>"
     html += f"<table><tr><th>ID поста (1)</th><th>{val1}</th><th>ID поста (2)</th><th>{val2}</th><th>ID поста (3)</th><th>{val3}</th><th>ID поста (4)</th><th>{val4}</th></tr>"
     
     # Calculate global min and max for each column
