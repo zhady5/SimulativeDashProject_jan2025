@@ -57,8 +57,8 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
         vertical_spacing=0.13
     )
     
-    mean_cnt = merged_df.cnt.mean()
-    colors = [color_Nx_size if val >= 2 * mean_cnt else graph_color for val in merged_df['cnt']]
+    mean_cnt = subdf_posts.cnt.mean()
+    colors = [color_Nx_size if val >= 2 * mean_cnt else graph_color for val in subdf_posts['cnt']]
     
     fig_posts.add_trace(go.Bar(x=merged_df.date, y=merged_df.cnt, marker_color=colors,
                                hovertemplate='%{x} <br>Публикаций: %{y}<extra></extra>'), row=1, col=1)
