@@ -84,6 +84,11 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
             data[f'post_id ({num})'] = data['post_id'].astype(str) + ' (' + data['text_short'] + ')'
             data.drop(['text_short', 'post_id'], axis=1, inplace=True)
             data.rename(columns={'link': f'link ({num})'}, inplace=True)
+            # Проверка, содержит ли столбец col только NaN
+            if data[col].isna().all():
+                # Заменяем все значения в других столбцах на NaN
+                for col in data.columns:
+                    data[col] = np.nan
             return data[[f'post_id ({num})', f'link ({num})', f'{col}']]
         
         data_views = func(df, 'current_views', 5)
@@ -135,8 +140,9 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
         df_cols_tl = ['channel_name', 'post_id','post_datetime', 'text_short', 'link', 'current_views']
         df = post_view[df_cols_pw][post_view.channel_name == channel].sort_values(by='current_views', ascending=False).drop_duplicates()
         df = df.merge(posts_link.rename(columns={'id':'post_id'}), on = 'post_id')[df_cols_tl]
-        df = pd.concat([pd.DataFrame(columns=df_cols_tl + ['text_short', 'link']), df], axis=0)
-        #st.write(df.columns, df)
+        df = pd.concat([pd.DataFrame(columns=df_cols_tl + ['react_cnt_sum', 'idx_active']), df], axis=0)
+        for c in ['current_views', 'react_cnt_sum', 'idx_active']:
+            df[c] = df[c].astype(float)
     
     top5 = create_rows5(df, get_top, post_subs_changes, 'subs_change_pos')
     bottom5 = create_rows5(df, get_bottom, post_subs_changes, 'subs_change_neg', 0)
