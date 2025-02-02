@@ -1,7 +1,7 @@
-## Дашборд можно посмотреть тут: [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://simulativedashprojectdec2024.streamlit.app/)  
+## Дашборд можно посмотреть тут: [![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://telegramprojectjan2025.streamlit.app/)
 
 
-### SimulativeDashProject_dec2024/
+### SimulativeDashProject_jan2025/
 
 ├── `.github/workflows/`      # Конфигурации GitHub Actions
 
