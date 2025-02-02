@@ -306,7 +306,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
                     else:
                         normalized_value = 0
                         
-                    circle_size = int(26 + normalized_value * 30)
+                    circle_size = int(32 + normalized_value * 30)
                     circle_color = plt.cm.autumn(normalized_value)[:3]
                     if col != val3:
                         value = int(value)
