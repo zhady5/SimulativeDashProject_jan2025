@@ -101,7 +101,8 @@ def create_slider(data, col_date, channel, name_slider):
     # Получаем минимальную и максимальную дату
     date_min = pd.to_datetime(data[col_date]).min().date()
     date_max = pd.to_datetime(data[col_date]).max().date()
-
+    if date_min == date_max:
+        date_mшт -= timedelta(days=1)
     
     # Создаем слайдер
     selected_range = st.slider(
