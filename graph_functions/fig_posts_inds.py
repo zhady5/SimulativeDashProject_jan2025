@@ -23,7 +23,15 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
     # Преобразуем строку в datetime
     #subdf_channel.loc[:, 'date'] = pd.to_datetime(subdf_channel['date'])
     start_time, end_time = date_range
-
+    # Создаем полный диапазон дат между минимальными и максимальными значениями
+    full_dates = pd.date_range(start=start_time, end=end_time, freq='D')
+    
+    # Присваиваем нулевые значения для отсутствующих дат
+    new_df = pd.DataFrame({'date': full_dates, 'cnt': 0})
+    
+    # Объединяем новые данные с исходными данными
+    merged_df = new_df.merge(subdf_posts, on=['date'], how='left').fillna(0)
+    
     subdf_posts = subdf_channel[(pd.to_datetime(subdf_channel['date']).dt.date >= start_time) & 
                                 (pd.to_datetime(subdf_channel['date']).dt.date <= end_time)]
     
