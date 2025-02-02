@@ -133,7 +133,7 @@ def main():
         # Подзаголовок
         st.markdown('<div class="subheader"><h2>Дашборд по анализу Telegram-каналов</h2></div>', unsafe_allow_html=True)
         # Выбор канала
-        channels_list = posts['channel_name'].unique()
+        channels_list = sorted(posts['channel_name'].unique())
         selected_channel = st.selectbox('', channels_list) #'Выберите канал:', 
 
     with head_col2:
