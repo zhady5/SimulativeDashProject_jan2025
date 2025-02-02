@@ -28,6 +28,7 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
     
     # Присваиваем нулевые значения для отсутствующих дат
     new_df = pd.DataFrame({'date': full_dates, 'cnt': 0})
+    new_df['date'] = pd.to_datetime(new_df['date'])
 
 
     subdf_posts = subdf_channel[(pd.to_datetime(subdf_channel['date']).dt.date >= start_time) & 
