@@ -14,7 +14,7 @@ def create_heatmap(filtered_df, bgcolor = '#ffb347',  word_color = "#212121", mi
         return
     
     # Генерация данных
-    filtered_df = filtered_df[['date', 'hour', 'cnt']].rename(columns={'cnt': 'publications'}).sort_values('date')
+    filtered_df = filtered_df.groupby(['date', 'hour'])[['id']].nunique().rename(columns={'id': 'publications'}).reset_index().sort_values('date')
     raw_index = filtered_df.set_index(['date', 'hour'])
 
     # Проверяем, что дата присутствует и не пуста
