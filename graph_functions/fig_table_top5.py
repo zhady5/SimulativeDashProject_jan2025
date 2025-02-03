@@ -130,18 +130,21 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
         return df
 
     post_subs_changes = df_cnt_sub_between_posts(posts, subs, channel)
-    gr_pvr = gr_pvr.merge(posts_link.rename(columns={'id':'post_id'}), on = 'post_id')
-    df_cols = ['channel_name', 'post_id','post_datetime', 'text_short', 'link', 'current_views', 
-             'react_cnt_sum', 'idx_active']
-    df = gr_pvr[df_cols][gr_pvr.channel_name == channel].sort_values(by='current_views', ascending=False).drop_duplicates()
 
-    if df.shape[0]==0:
-        df_cols_pw = ['channel_name', 'post_id','post_datetime',  'current_views']
-        df_cols_tl = ['channel_name', 'post_id','post_datetime', 'text_short', 'link', 'current_views']
-        df = post_view[df_cols_pw][post_view.channel_name == channel].sort_values(by='current_views', ascending=False).drop_duplicates()
-        df = df.merge(posts_link.rename(columns={'id':'post_id'}), on = 'post_id')[df_cols_tl]
-        df = pd.concat([pd.DataFrame(columns=df_cols_tl + ['react_cnt_sum', 'idx_active']), df], axis=0)
-        for c in ['current_views', 'react_cnt_sum', 'idx_active']:
+    df_cols_pw = ['channel_name', 'post_id','post_datetime',  'current_views']
+    df_cols_tl = ['channel_name', 'post_id','post_datetime', 'text_short', 'link', 'current_views']
+    df1 = post_view[df_cols_pw][post_view.channel_name == channel].sort_values(by='current_views', ascending=False).drop_duplicates()
+    df1 = df1.merge(posts_link.rename(columns={'id':'post_id'}), on = 'post_id')[df_cols_tl]
+
+    df_cols_gr = ['channel_name', 'post_id','post_datetime', 'react_cnt_sum', 'idx_active']
+    df2 = gr_pvr[df_cols_gr][gr_pvr.channel_name == channel].drop_duplicates()
+
+    if df2.shape[0]==0:
+        df = pd.concat([pd.DataFrame(columns=df_cols_tl + ['react_cnt_sum', 'idx_active']), df1], axis=0)
+    else:
+        df = df1.merge(df2, how= 'left', on = ['channel_name', 'post_id','post_datetime']).drop_duplicates()
+
+    for c in ['current_views', 'react_cnt_sum', 'idx_active']:
             df[c] = df[c].astype(float)
     
     top5 = create_rows5(df, get_top, post_subs_changes, 'subs_change_pos')
