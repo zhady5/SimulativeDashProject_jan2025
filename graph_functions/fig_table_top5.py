@@ -66,7 +66,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
         top5_views = df.nlargest(n, col)[['post_id',  'text_short', 'link', col]]
         
         # Исключаем строки с NaN перед конкатенацией
-        top5_views = top5_views.dropna(how='all')
+        top5_views = top5_views.dropna(how='any')
         
         return top5_views.reset_index(drop=True)
     
@@ -75,7 +75,7 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
         bottom5_views = df.nsmallest(n, col)[['post_id',  'text_short', 'link', col]].sort_values(by = col, ascending=False)
         
         # Исключаем строки с NaN перед конкатенацией
-        bottom5_views = bottom5_views.dropna(how='all')
+        bottom5_views = bottom5_views.dropna(how='any')
         
         return bottom5_views.reset_index(drop=True)
     
