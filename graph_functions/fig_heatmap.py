@@ -15,15 +15,19 @@ def create_heatmap(filtered_df, bgcolor = '#ffb347',  word_color = "#212121", mi
     
     # Генерация данных
     filtered_df = filtered_df.groupby(['date', 'hour'])[['id']].nunique().rename(columns={'id': 'publications'}).reset_index().sort_values('date')
+    filtered_df['date'] = pd.to_datetime(filtered_df['date'])
     raw_index = filtered_df.set_index(['date', 'hour'])
 
     # Проверяем, что дата присутствует и не пуста
     if len(filtered_df) == 0:
         st.write({})
         return
-    
-    dates = pd.to_datetime(filtered_df.date).unique().tolist()
-    index = pd.MultiIndex.from_product([filtered_df.date.unique(), range(1, 25)], names=['date', 'hour'])
+
+    min_date = filtered_df.date.min()
+    max_date = datetime.datetime.today().date()
+    dates = pd.date_range(min_date, max_date, freq='D')
+    #dates = pd.to_datetime(filtered_df.date).unique().tolist()
+    index = pd.MultiIndex.from_product([dates, range(1, 25)], names=['date', 'hour'])
     raw = pd.DataFrame(index=index)
     df = raw.merge(raw_index, left_index=True, right_index=True, how='left')
     df.fillna(0, inplace=True)
