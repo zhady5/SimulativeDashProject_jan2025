@@ -54,7 +54,7 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
             [None, {'type': 'indicator'}],
             [None, {'type': 'indicator'}],
         ],
-        vertical_spacing=0.08
+        vertical_spacing=0.16
     )
     
     mean_cnt = subdf_posts.cnt.mean()
