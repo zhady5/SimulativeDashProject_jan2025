@@ -70,7 +70,7 @@ def create_fig_posts_inds(posts, selected_channel, date_range, bgcolor='#ffb347'
         fig_posts.add_trace(
             go.Indicator(
                 value=current,
-                title={"text": f"<span style='font-size:0.8em;color:{word_color}'>Публикаций за {period_names[period[0]]}<br><span style='font-size:0.8em;color:gray'>Пред. знач.: {round(previous)}</span>"},
+                title={"text": f"<span style='font-size:0.5em;color:{word_color}'>Публикаций за {period_names[period[0]]}<br><span style='font-size:0.8em;color:gray'>Пред. знач.: {round(previous)}</span>"},
                 mode="number+delta",
                 delta={'reference': previous, 'relative': True, "valueformat": ".2%"},
             ), row=i + 1, col=2
