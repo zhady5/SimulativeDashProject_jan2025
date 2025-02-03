@@ -146,6 +146,10 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
     
     top5 = create_rows5(df, get_top, post_subs_changes, 'subs_change_pos')
     bottom5 = create_rows5(df, get_bottom, post_subs_changes, 'subs_change_neg', 0)
+
+
+    if top5.iloc[:, :-3].equals(bottom5.iloc[:, :-3]):
+        bottom5 = pd.concat([pd.DataFrame(columns = bottom5.columns[:-3]), bottom5[bottom5.columns[-3:]]], axis=1)
     
     df = pd.concat([top5, bottom5], axis=0)
     
