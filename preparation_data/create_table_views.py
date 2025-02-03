@@ -36,7 +36,7 @@ import pandas as pd
 def create_table(channels, posts, post_view):
     posts_un = posts.merge(channels[['id', 'username']].rename(columns={'id':'channel_id'}), on = 'channel_id').copy()
     posts_un.loc[:, 'text_short'] = posts.text.str[:20]
-    posts_un.loc[:, 'link'] = 'https://t.me/' +  posts_un.username + '/'+ posts_un.id.astype(str)
+    posts_un.loc[:, 'link'] = 'https://t.me/' +  posts_un.username + '/'+ posts_un.message_id.astype(str)
     post_view = post_view.merge(posts_un[['id', 'text_short', 'link']].rename(columns={'id':'post_id'}), on = 'post_id')
     #groupping
     group_cols = ['channel_name', 'post_id', 'text_short', 'link', 'post_datetime', 'current_views', 'days_diff']
