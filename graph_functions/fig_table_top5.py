@@ -39,10 +39,10 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolo
         return
 
     
-    posts_link = posts[['id', 'text', 'channel_id']].merge(channels[['id', 'username']].rename(
+    posts_link = posts[['id', 'message_id', 'text', 'channel_id']].merge(channels[['id', 'username']].rename(
                                                                                         columns={'id':'channel_id'}), on = 'channel_id').copy()
     posts_link.loc[:, 'text_short'] = posts_link.text.str[:10]
-    posts_link.loc[:, 'link'] = 'https://t.me/' +  posts_link.username + '/'+ posts_link.id.astype(str)
+    posts_link.loc[:, 'link'] = 'https://t.me/' +  posts_link.username + '/'+ posts_link.message_id.astype(str)
     posts_link.drop(['text', 'username'], axis=1, inplace=True)
     
     
