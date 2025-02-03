@@ -33,6 +33,7 @@ import pandas as pd
 #  return tab_final
 
 
+
 def create_table(channels, posts, post_view):
     posts_un = posts.merge(channels[['id', 'username']].rename(columns={'id':'channel_id'}), on = 'channel_id').copy()
     posts_un.loc[:, 'text_short'] = posts.text.str[:20]
