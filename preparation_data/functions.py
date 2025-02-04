@@ -94,8 +94,8 @@ def gradient_color_func(start_color = '#8B0000', end_color = '#ffb347', word=Non
 
 
 def create_slider(months_ago=3): #(data, col_date, channel, name_slider)
-    if channel is None:
-        return None
+    #if channel is None:
+    #    return None
 
     #data = data[data['channel_name'] == channel]    
     # Получаем минимальную и максимальную дату
