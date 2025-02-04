@@ -7,7 +7,7 @@ import streamlit as st
 #from functions import get_current_previous_sums, date_ago
 import datetime
 
-def create_heatmap(filtered_df, date_range, bgcolor = '#ffb347',  word_color = "#212121", min_color_heatmap = '#F5DEB3', max_color_heatmap = "#006a4e"):
+def create_heatmap(filtered_df,  bgcolor = '#ffb347',  word_color = "#212121", min_color_heatmap = '#F5DEB3', max_color_heatmap = "#006a4e"): #date_range,
     # Проверяем, что дата присутствует и не пуста
     if len(filtered_df) == 0:
         st.write({})
@@ -23,9 +23,9 @@ def create_heatmap(filtered_df, date_range, bgcolor = '#ffb347',  word_color = "
         st.write({})
         return
 
-    #min_date = filtered_df.date.min()
-    #max_date = datetime.datetime.today().date()
-    min_date, max_date = date_range
+    min_date = filtered_df.date.min()
+    max_date = filtered_df.date.max() #datetime.datetime.today().date()
+    #min_date, max_date = date_range
     dates = pd.date_range(min_date, max_date, freq='D')
     #dates = pd.to_datetime(filtered_df.date).unique().tolist()
     index = pd.MultiIndex.from_product([dates, range(1, 25)], names=['date', 'hour'])
