@@ -336,7 +336,7 @@ def main():
         #st.plotly_chart(create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color), use_container_width=True)
         
         if len(filtered_df) != 0:
-            fig_heatmap = create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color)
+            fig_heatmap = create_heatmap(filtered_df, slider, bgcolor, word_color, min_color_heatmap, graph_color)
             if isinstance(fig_heatmap, go.Figure):
                 st.plotly_chart(fig_heatmap, use_container_width=True)
             else:
