@@ -62,8 +62,8 @@ def calculate_mean_views(post_view,  channel):
     try:
         filtered_df = post_view[post_view.channel_name==channel].copy()
 
-        start_time, end_time = date_range
-        filtered_df = filtered_df[(pd.to_datetime(filtered_df.post_datetime).dt.date>= start_time)&(pd.to_datetime(filtered_df.post_datetime).dt.date<=end_time)]
+        #start_time, end_time = date_range
+        #filtered_df = filtered_df[(pd.to_datetime(filtered_df.post_datetime).dt.date>= start_time)&(pd.to_datetime(filtered_df.post_datetime).dt.date<=end_time)]
         
         mean_views = int(round(filtered_df[['post_id', 'current_views']].drop_duplicates().current_views.mean(), 0))
         
