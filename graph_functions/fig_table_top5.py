@@ -41,6 +41,8 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, date_r
     
     start_time, end_time = date_range
     post_view = post_view[(pd.to_datetime(post_view.post_datetime).dt.date>= start_time)&(pd.to_datetime(post_view.post_datetime).dt.date<=end_time)]
+    posts = posts[(pd.to_datetime(posts.datetime).dt.date>= start_time)&(pd.to_datetime(posts.datetime).dt.date<=end_time)]
+    subs = subs[(pd.to_datetime(subs.datetime).dt.date>= start_time)&(pd.to_datetime(subs.datetime).dt.date<=end_time)]
     
     
     posts_link = posts[['id', 'message_id', 'text', 'channel_id']].merge(channels[['id', 'username']].rename(
