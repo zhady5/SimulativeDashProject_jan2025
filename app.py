@@ -164,14 +164,14 @@ def main():
             #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     # БЛОК 2
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-    slider = create_slider(slider_months_ago)
+    
     #---------------------------------------------------------------------------------------------------------------------
     #Метрики
     
-    mean_subs_pos, mean_subs_neg, max_subs_pos, max_subs_neg = calculate_mean_max_subs(subs, slider, selected_channel)
-    mean_posts_day, mean_posts_week, mean_posts_month = calculate_mean_posts(posts, slider, selected_channel)
-    mean_views = calculate_mean_views(post_view, slider, selected_channel)
-    mean_reacts, mean_idx, react1, perc1, react2, perc2, react3, perc3 = calculate_mean_reacts(gr_pvr, slider, selected_channel)
+    mean_subs_pos, mean_subs_neg, max_subs_pos, max_subs_neg = calculate_mean_max_subs(subs,  selected_channel)
+    mean_posts_day, mean_posts_week, mean_posts_month = calculate_mean_posts(posts, selected_channel)
+    mean_views = calculate_mean_views(post_view,  selected_channel)
+    mean_reacts, mean_idx, react1, perc1, react2, perc2, react3, perc3 = calculate_mean_reacts(gr_pvr,  selected_channel)
     col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
     with col1:
         st.write(f'<span class="custom-text"> 📈 Средний ежедневный прирост: </span><span class="custom-number">{mean_subs_pos}</span>', unsafe_allow_html=True)
@@ -197,7 +197,10 @@ def main():
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     # БЛОК 3
     #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    
+    # SLIDER
+    slider = create_slider(slider_months_ago)
+
+    #----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     col1, gap_col, col2 = st.columns([0.47, 0.06, 0.47])
     with col1:
         #---------------------------------------------------------------------------------------------------------------------
