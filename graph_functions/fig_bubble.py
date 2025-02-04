@@ -49,7 +49,7 @@ def create_bubble_fig(filtered_df, date_range, bgcolor = '#ffb347', word_color =
                         '<b>ID Поста:</b> %{text}<br>' +
                         '<b>Текущие Просмотры:</b> %{x}<br>' +
                         '<b>Количество знаков в тексте:</b> %{marker.size}<br>' +  # Добавлен размер пузыря
-                        '<b>Активность:</b> %{y} %<extra></extra>'
+                        '<b>Вовлеченность:</b> %{y} %<extra></extra>'
                 ))
                 
                 # Логарифмическая ось X
