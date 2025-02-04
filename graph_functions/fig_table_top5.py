@@ -315,11 +315,11 @@ def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, date_r
                 link_col = f"link ({i//3 + 1})"  # Calculate corresponding link column
                 link = row[link_col]
                 if pd.notna(value) and pd.notna(link):  # Check that both values are not NaN
-                    html += f"<td style='font-size: {font_size}px;' ><a href='{link}' target='_blank'>{value}</a></td>"
+                    html += f"<td style='font-size: {font_size}px; color: #666' ><a href='{link}' target='_blank'>{value}</a></td>"
                 elif isinstance(value, (int, float)) and not np.isnan(value) and np.isnan(link):
-                    html += f"<td style='font-size: {font_size}px;' >{int(value)}</td>"  # If no link, just show the ID
+                    html += f"<td style='font-size: {font_size}px; color: #666' >{int(value)}</td>"  # If no link, just show the ID
                 elif pd.notna(value) and not isinstance(value, (int, float)) and np.isnan(link): 
-                    html += f"<td style='font-size: {font_size}px;' >{int(value)}</td>"
+                    html += f"<td style='font-size: {font_size}px; color: #666' >{int(value)}</td>"
                 else:
                     html +=  f"<td>{''}</td>"
             elif isinstance(value, (int, float)) and not np.isnan(value) and col in basic_services_cols:
