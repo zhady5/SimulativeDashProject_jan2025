@@ -167,7 +167,9 @@ def main():
     
     #---------------------------------------------------------------------------------------------------------------------
     #Метрики
-    
+
+    st.write('')
+    st.write('')
     mean_subs_pos, mean_subs_neg, max_subs_pos, max_subs_neg = calculate_mean_max_subs(subs,  selected_channel)
     mean_posts_day, mean_posts_week, mean_posts_month = calculate_mean_posts(posts, selected_channel)
     mean_views = calculate_mean_views(post_view,  selected_channel)
