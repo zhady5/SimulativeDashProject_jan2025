@@ -373,7 +373,7 @@ def main():
     #days_to_show = st.session_state.slider_days
     columns_to_show = [ "Дата публикации", "Текст поста","Текущие просмотры"] + [str(i)+" д" for i in range(1, days_to_show+1)]
     
-    df = table_views(table_day_views, days_to_show, selected_channel)
+    df = table_views(table_day_views, slider, days_to_show, selected_channel)
     # Преобразование слов в ссылки
     def make_link(row):
         return f'<a href="{row["Ссылка"]}" target="_blank">{row["Текст поста"]}</a>'
