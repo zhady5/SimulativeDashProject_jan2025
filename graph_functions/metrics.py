@@ -10,9 +10,12 @@ import random
 #-----------------------------Метрики по подписчикам-------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 
-def calculate_mean_max_subs(subs, channel):
+def calculate_mean_max_subs(subs, date_range, channel):
     try:
         filtered_df = subs[subs.channel_name==channel][['date', 'day_change_pos', 'day_change_neg']].drop_duplicates()
+        
+        start_time, end_time = date_range
+        subs = subs[(pd.to_datetime(subs.datetime).dt.date>= start_time)&(pd.to_datetime(subs.datetime).dt.date<=end_time)]
         
         # вопрос по округлению!!!!!!!
         mean_subs_pos, mean_subs_neg = int(round(filtered_df.day_change_pos.mean(), 0)), int(round(filtered_df.day_change_neg.mean(), 0)) 
@@ -30,9 +33,13 @@ def calculate_mean_max_subs(subs, channel):
 #-----------------------------Метрики по публикациям-------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 
-def calculate_mean_posts(posts, channel):
+def calculate_mean_posts(posts, date_range, channel):
     try:
         filtered_df = posts[posts.channel_name==channel].copy()
+
+        start_time, end_time = date_range
+        filtered_df = filtered_df[(pd.to_datetime(filtered_df.datetime).dt.date>= start_time)&(pd.to_datetime(filtered_df.datetime).dt.date<=end_time)]
+        
         filtered_df.loc[:, 'date_week'] = pd.to_datetime(filtered_df.date).apply(lambda d: d.isocalendar().week)
         filtered_df.loc[:, 'date_month'] = filtered_df.date.apply(lambda d: str(d)[:7])
     
@@ -51,9 +58,13 @@ def calculate_mean_posts(posts, channel):
 #-----------------------------Метрики по просмотрам-------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 
-def calculate_mean_views(post_view, channel):
+def calculate_mean_views(post_view, date_range, channel):
     try:
         filtered_df = post_view[post_view.channel_name==channel].copy()
+
+        start_time, end_time = date_range
+        filtered_df = filtered_df[(pd.to_datetime(filtered_df.post_datetime).dt.date>= start_time)&(pd.to_datetime(filtered_df.post_datetime).dt.date<=end_time)]
+        
         mean_views = int(round(filtered_df[['post_id', 'current_views']].drop_duplicates().current_views.mean(), 0))
         
         # Среднее количество просмотров одной публикации
@@ -68,6 +79,9 @@ def calculate_mean_views(post_view, channel):
 def calculate_mean_reacts(gr_pvr, channel, react1='', perc1=0, react2='', perc2=0, react3='', perc3=0):
     try:
         filtered_df = gr_pvr[gr_pvr.channel_name == channel]
+
+        start_time, end_time = date_range
+        filtered_df = filtered_df[(pd.to_datetime(filtered_df.post_datetime).dt.date>= start_time)&(pd.to_datetime(filtered_df.post_datetime).dt.date<=end_time)]
     
         filtered_df.loc[:,'reaction_type'] = filtered_df.reaction_type.apply(lambda r: 'Custom' if 'ReactionCustomEmoji' in r else r)
         filtered_df.loc[:,'reaction_type'] = filtered_df.reaction_type.apply(lambda r: 'Paid 🌟' if 'ReactionPaid' in r else r)
