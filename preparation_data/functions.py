@@ -93,14 +93,17 @@ def gradient_color_func(start_color = '#8B0000', end_color = '#ffb347', word=Non
     return f"rgb({r}, {g}, {b})"
 
 
-def create_slider(months_ago=3): #(data, col_date, channel, name_slider)
+def create_slider(months_ago=1): #(data, col_date, channel, name_slider)
     #if channel is None:
     #    return None
 
     #data = data[data['channel_name'] == channel]    
     # Получаем минимальную и максимальную дату
-    date_min = datetime.datetime.today().date() - relativedelta(months=months_ago) #pd.to_datetime(data[col_date]).min().date()
+    date_min = '2025-01-01' #pd.to_datetime(data[col_date]).min().date()  datetime.datetime.today().date() - relativedelta(months=months_ago)
     date_max = datetime.datetime.today().date() #pd.to_datetime(data[col_date]).max().date()
+
+    value_min = datetime.datetime.today().date() - relativedelta(months=months_ago)
+    
     if date_min == date_max:
         date_min -= timedelta(days=1)
     
@@ -109,7 +112,7 @@ def create_slider(months_ago=3): #(data, col_date, channel, name_slider)
       '',
       min_value=date_min,
       max_value=date_max,
-      value=(date_min, date_max),
+      value=(value_min, date_max),
       step=timedelta(days=1),
       format="MMM DD, YYYY",
       #key=f"slider_{name_slider}",
