@@ -331,6 +331,7 @@ def main():
         st.markdown('</div>', unsafe_allow_html=True)
 
         # Фильтрация данных в зависимости от выбранной кнопки
+        
         if st.session_state.heatmap_button_state == "3д":
             filtered_df = posts[(posts.channel_name == selected_channel) &
                                 (pd.to_datetime(posts.date) >= date_ago('days', 2))]
@@ -348,7 +349,9 @@ def main():
         #st.plotly_chart(create_heatmap(filtered_df, bgcolor, word_color, min_color_heatmap, graph_color), use_container_width=True)
         
         if len(filtered_df) != 0:
-            fig_heatmap = create_heatmap(filtered_df, slider, bgcolor, word_color, min_color_heatmap, graph_color)
+            heatmap_min_dt, heatmap_max_dt = slider
+            filtered_df = filtered_df[(pd.to_datetime(filtered_df.date).dt.date>= heatmap_min_dt)&(pd.to_datetime(filtered_df.date).dt.date<=heatmap_max_dt)]
+            fig_heatmap = create_heatmap(filtered_df,  bgcolor, word_color, min_color_heatmap, graph_color)
             if isinstance(fig_heatmap, go.Figure):
                 st.plotly_chart(fig_heatmap, use_container_width=True)
             else:
