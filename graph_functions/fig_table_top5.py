@@ -32,12 +32,16 @@ id2, val2 = 'ID поста (2)' , 'Общее количество реакци�
 id3, val3 = 'ID поста (3)' , 'Индекс вовлеченности ❤️'
 id4, val4 = 'ID поста (4)' , 'Подписались \Отписались 🏃‍♀️'
 
-def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
+def create_table_top5(channels, posts, post_view, subs, gr_pvr,  channel, date_range, bgcolor='#FFA500', word_color='#666', cmap_colors = matplotlib.cm.autumn):
     # Проверяем, что дата присутствует и не пуста
     if channel is None  or len(posts) == 0 or len(subs) == 0 or len(gr_pvr) == 0:
         st.write({})
         return
 
+    
+    start_time, end_time = date_range
+    post_view = post_view[(pd.to_datetime(post_view.post_datetime).dt.date>= start_time)&(pd.to_datetime(post_view.post_datetime).dt.date<=end_time)]
+    
     
     posts_link = posts[['id', 'message_id', 'text', 'channel_id']].merge(channels[['id', 'username']].rename(
                                                                                         columns={'id':'channel_id'}), on = 'channel_id').copy()
