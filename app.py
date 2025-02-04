@@ -351,7 +351,7 @@ def main():
         st.markdown('<div class="custom-text">Таблица включает топ-5 постов с лучшими и худшими показателями по просмотрам, реакциям, индексу вовлеченности и динамике подписок. \n Анализ поможет понять, какой контент привлекает больше внимания, вызывает активность и влияет на рост аудитории.</div>', unsafe_allow_html=True)
         st.write('')
         
-        create_table_top5(channels, posts, post_view, subs, gr_pvr,  selected_channel, bgcolor, word_color, cmap_colors)
+        create_table_top5(channels, posts, post_view, subs, gr_pvr,  selected_channel, slider, bgcolor, word_color, cmap_colors)
     #---------------------------------------------------------------------------------------------------------------------
     # Таблица - динамика просмотров
         
