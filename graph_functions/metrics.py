@@ -10,7 +10,7 @@ import random
 #-----------------------------Метрики по подписчикам-------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 
-def calculate_mean_max_subs(subs, date_range, channel):
+def calculate_mean_max_subs(subs, channel):
     try:
         filtered_df = subs[subs.channel_name==channel][['date', 'day_change_pos', 'day_change_neg']].drop_duplicates()
         
@@ -33,7 +33,7 @@ def calculate_mean_max_subs(subs, date_range, channel):
 #-----------------------------Метрики по публикациям-------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 
-def calculate_mean_posts(posts, date_range, channel):
+def calculate_mean_posts(posts,  channel):
     try:
         filtered_df = posts[posts.channel_name==channel].copy()
 
@@ -58,7 +58,7 @@ def calculate_mean_posts(posts, date_range, channel):
 #-----------------------------Метрики по просмотрам-------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------------------
 
-def calculate_mean_views(post_view, date_range, channel):
+def calculate_mean_views(post_view,  channel):
     try:
         filtered_df = post_view[post_view.channel_name==channel].copy()
 
