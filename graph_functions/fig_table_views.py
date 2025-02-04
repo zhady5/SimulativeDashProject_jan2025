@@ -4,9 +4,13 @@ from datetime import datetime
 import math
 
 
-def table_views(table_day_views, max_days, channel):
+def table_views(table_day_views, date_range, max_days, channel):
     text_cols = 6
     sub_tab_final = table_day_views[table_day_views.channel_name==channel].iloc[:, 1:text_cols+max_days]
+
+    start_time, end_time = date_range
+    sub_tab_final  = sub_tab_final[(pd.to_datetime(sub_tab_final.post_datetime).dt.date>= start_time)&(pd.to_datetime(sub_tab_final.post_datetime).dt.date<=end_time)]
+    
     sub_tab_final.columns = ["ID поста", "Текст поста", "Ссылка", "Дата публикации", "Текущие просмотры"] + [f"{i} д" for i in range(1, max_days+1)]
 
 
