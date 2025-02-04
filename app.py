@@ -189,11 +189,11 @@ def main():
         st.write(f'<span class="custom-text"> 🗂️ В среднем постов в месяц: </span><span class="custom-number">{mean_posts_month}</span>', unsafe_allow_html=True)
     
     with col3:
-        image_views = "word_views.png"
+        image_views = "word_active.png"
         st.image(image_views)        
         st.write(f'<span class="custom-text"> 👀 В среднем просмотров: </span><span class="custom-number">{mean_views}</span>', unsafe_allow_html=True)
         st.write(f'<span class="custom-text"> 🐾 В среднем реакций: </span><span class="custom-number">{mean_reacts}</span>', unsafe_allow_html=True)
-        st.write(f'<span class="custom-text"> 💎 В среднем уровень активности: </span><span class="custom-number">{mean_idx}%</span>', unsafe_allow_html=True)
+        st.write(f'<span class="custom-text"> 💎 Средняя вовлеченность: </span><span class="custom-number">{mean_idx}%</span>', unsafe_allow_html=True)
     
     with col4:
         image_reacts = "word_reacts.png"
