@@ -99,7 +99,7 @@ def create_slider(months_ago=1): #(data, col_date, channel, name_slider)
 
     #data = data[data['channel_name'] == channel]    
     # Получаем минимальную и максимальную дату
-    date_min = '2025-01-01' #pd.to_datetime(data[col_date]).min().date()  datetime.datetime.today().date() - relativedelta(months=months_ago)
+    date_min = pd.to_datetime('2025-01-01').date() #pd.to_datetime(data[col_date]).min().date()  datetime.datetime.today().date() - relativedelta(months=months_ago)
     date_max = datetime.datetime.today().date() #pd.to_datetime(data[col_date]).max().date()
 
     value_min = datetime.datetime.today().date() - relativedelta(months=months_ago)
