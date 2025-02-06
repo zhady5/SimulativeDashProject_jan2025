@@ -92,7 +92,7 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
     #fig_subs.update_yaxes(range=[0, max(subdf_subs.subs_cnt) * 1.1], row=1, col=1)
     # Устанавливаем начало оси Y в ноль
     fig_subs.update_yaxes(rangemode="tozero", row=1, col=1)
-    fig_subs.update_xaxes(range=[subdf_subs['datetime'].min(), datetime.datetime.today().date()])
+    fig_subs.update_xaxes(range=[start_time, end_time])
 
     # Обновляем макет, чтобы убрать легенду (так как у нас два следа для одних данных)
     fig_subs.update_layout(showlegend=False)
