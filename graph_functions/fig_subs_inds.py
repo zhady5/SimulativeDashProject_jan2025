@@ -43,21 +43,11 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
         vertical_spacing=0.13
     )
     
-
-        # Добавляем след для заполнения области
-    fig_subs.add_trace(go.Scatter(
-        x=subdf_subs.datetime,
-        y=subdf_subs.subs_cnt,
-        fill='tozeroy',
-        fillcolor = contr_color,
-        mode='none',  # Без маркеров или линий
-        hoverinfo='skip',  # Отключаем hover для этого следа
-    ), row=1, col=1)
-
-    
     fig_subs.add_trace(go.Scatter(
                     x=subdf_subs.datetime, 
                     y=subdf_subs.subs_cnt, 
+                    fill='tozeroy',
+                    fillcolor = contr_color,
                     mode='markers',  # Изменено с 'lines+markers' на 'markers'
                     marker=dict(
                     color=graph_color,
