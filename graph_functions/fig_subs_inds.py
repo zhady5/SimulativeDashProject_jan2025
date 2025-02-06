@@ -12,7 +12,7 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
         st.write({})  # Вывод пустой фигуры
         return
 
-    subdf_channel = subs[subs.channel_name == selected_channel][['channel_name', 'date', 'subs_cnt', 'subs_change']].drop_duplicates()
+    subdf_channel = subs[subs.channel_name == selected_channel][['channel_name', 'date', 'datetime','subs_cnt', 'subs_change']].drop_duplicates()
 
     # Проверяем, что дата присутствует и не пуста
     if len(subdf_channel) == 0 or 'date' not in subdf_channel.columns or 'subs_cnt' not in subdf_channel.columns:
