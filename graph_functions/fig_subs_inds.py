@@ -115,7 +115,7 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
                     dict(count=2, label="2д", step="day", stepmode="backward"),
                     dict(count=14, label="2н", step="day", stepmode="backward"),
                     dict(count=2, label="2м", step="month", stepmode="backward"),
-                    dict(step="all")  # Кнопка для просмотра всего диапазона
+                    dict(step="all", stepmode="backward")  # Кнопка для просмотра всего диапазона
                 ])
             )
         )
