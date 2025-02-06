@@ -102,7 +102,13 @@ def create_heatmap(filtered_df,  bgcolor = '#ffb347',  word_color = "#212121", m
         font_size=9,
         yaxis_title="Дата",
         xaxis_title="Часы",
-        yaxis=dict(autorange="reversed"),  # tickangle=45,  # Наклон меток для улучшения читаемости
+        #yaxis=dict(autorange="reversed"),  # tickangle=45,  # Наклон меток для улучшения читаемости
+        yaxis=dict(
+            autorange="reversed",
+            tickmode='array',
+            tickvals=y_labels_subset,
+            ticktext=[date for date in y_labels_subset]
+        ),
         
     )
 
