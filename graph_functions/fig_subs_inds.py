@@ -43,11 +43,6 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
         vertical_spacing=0.13
     )
     
-    mean_subs = subdf_subs.subs_cnt.mean()
-    #colors = ['#8B4513' if val >= 2 * mean_subs else '#F5DEB3' for val in subdf_subs['subs_cnt']]
-    
-    #fig_subs.add_trace(go.Bar(x=subdf_subs.date, y=subdf_subs.subs_cnt, marker_color=colors,
-    #                          hovertemplate='%{x} <br>Подписчиков: %{y}<extra></extra>'), row=1, col=1)
 
         # Добавляем след для заполнения области
     fig_subs.add_trace(go.Scatter(
@@ -91,9 +86,9 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
     # устанавливаем нижнюю границу диапазона в 0, а верхнюю - на 10% выше максимального значения
     #fig_subs.update_yaxes(range=[0, max(subdf_subs.subs_cnt) * 1.1], row=1, col=1)
     # Устанавливаем начало оси Y в ноль
-    fig_subs.update_yaxes(rangemode="tozero", row=1, col=1)
-    fig_subs.update_xaxes(range=[start_time, end_time])
-    fig_subs.update_xaxes(autorange=False)
+    #fig_subs.update_yaxes(rangemode="tozero", row=1, col=1)
+    #fig_subs.update_xaxes(range=[start_time, end_time])
+    #fig_subs.update_xaxes(autorange=False)
 
     # Обновляем макет, чтобы убрать легенду (так как у нас два следа для одних данных)
     fig_subs.update_layout(showlegend=False)
