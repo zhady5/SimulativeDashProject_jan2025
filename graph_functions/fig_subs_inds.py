@@ -93,9 +93,11 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
     # Устанавливаем начало оси Y в ноль
     fig_subs.update_yaxes(rangemode="tozero", row=1, col=1)
     fig_subs.update_xaxes(range=[start_time, end_time])
+    fig_subs.update_xaxes(autorange=False)
 
     # Обновляем макет, чтобы убрать легенду (так как у нас два следа для одних данных)
     fig_subs.update_layout(showlegend=False)
+    
     
     # Настройка стиля графика
     fig_subs.update_layout(
