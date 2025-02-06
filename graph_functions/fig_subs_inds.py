@@ -48,10 +48,31 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
     #fig_subs.add_trace(go.Bar(x=subdf_subs.date, y=subdf_subs.subs_cnt, marker_color=colors,
     #                          hovertemplate='%{x} <br>Подписчиков: %{y}<extra></extra>'), row=1, col=1)
 
-    fig_subs.add_trace(go.Scatter(x=subdf_subs.date, y=subdf_subs.subs_cnt, fill='tozeroy', mode='lines+markers'
-                                  , line_color=graph_color, marker_color=contr_color, marker_line_color=contr_color
-                                  , marker_line_width=1,  marker_size=5,
-                              hovertemplate='%{x} <br>Подписчиков: %{y}<extra></extra>'), row=1, col=1)
+        # Добавляем след для заполнения области
+    fig_subs.add_trace(go.Scatter(
+        x=subdf_subs.datetime,
+        y=subdf_subs.subs_cnt,
+        fill='tozeroy',
+        fillcolor = contr_color,
+        mode='none',  # Без маркеров или линий
+        hoverinfo='skip',  # Отключаем hover для этого следа
+    ), row=1, col=1)
+
+    
+    fig_subs.add_trace(go.Scatter(
+                    x=subdf_subs.datetime, 
+                    y=subdf_subs.subs_cnt, 
+                    mode='markers',  # Изменено с 'lines+markers' на 'markers'
+                    marker=dict(
+                    color=graph_color,
+                    size=8,  # Увеличен размер маркера для лучшей видимости
+                    line=dict(
+                        color=contr_color,
+                        width=1
+                    )
+                ),
+                hovertemplate='%{x} <br>Подписчиков: %{y}<extra></extra>'
+            ), row=1, col=1)
     
     period_names = dict({'days': 'вчера', 'weeks': 'неделю', 'months': 'месяц'})
     for i, period in enumerate([('days', 'days', 1), ('weeks', 'weeks', 1), ('months', 'months', 1)]):
@@ -65,6 +86,12 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
                 delta={'reference': previous, 'relative': True, "valueformat": ".2%"},
             ), row=i + 1, col=2
         )
+
+    # устанавливаем нижнюю границу диапазона в 0, а верхнюю - на 10% выше максимального значения
+    fig_subs.update_yaxes(range=[0, max(subdf_subs.subs_cnt) * 1.1], row=1, col=1)
+
+    # Обновляем макет, чтобы убрать легенду (так как у нас два следа для одних данных)
+    fig_subs.update_layout(showlegend=False)
     
     # Настройка стиля графика
     fig_subs.update_layout(
