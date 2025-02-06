@@ -88,7 +88,9 @@ def create_fig_subs_inds(subs, selected_channel, date_range, bgcolor='#ffb347', 
         )
 
     # устанавливаем нижнюю границу диапазона в 0, а верхнюю - на 10% выше максимального значения
-    fig_subs.update_yaxes(range=[0, max(subdf_subs.subs_cnt) * 1.1], row=1, col=1)
+    #fig_subs.update_yaxes(range=[0, max(subdf_subs.subs_cnt) * 1.1], row=1, col=1)
+    # Устанавливаем начало оси Y в ноль
+    fig_subs.update_yaxes(rangemode="tozero", row=1, col=1)
 
     # Обновляем макет, чтобы убрать легенду (так как у нас два следа для одних данных)
     fig_subs.update_layout(showlegend=False)
