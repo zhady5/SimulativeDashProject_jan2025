@@ -221,11 +221,13 @@ def main():
         # Добавляем собственные стили для изменения внешнего вида слайдера
         st.markdown(""" <style> .stMultiSelect div[class^='select-all'] > input { display:none; } .stSlider > div > div > div[class^='st-b9'] > div > input[type='range'] { appearance: none; background-color: transparent; /* Цвет фона слайдера */ height: 10px; cursor: pointer; } /* Стиль для трекера */ .stSlider > div > div > div[class^='st-b9'] > div > input[type='range']::-webkit-slider-runnable-track { background-color: lightblue; /* Цвет трека */ height: 8px; border-radius: 15px; } /* Стиль для бегунков */ .stSlider > div > div > div[class^='st-b9'] > div > input[type='range']::-webkit-slider-thumb { appearance: none; background-color: red; /* Цвет бегунков */ border: 2px solid black; height: 18px; width: 18px; border-radius: 50%; margin-top: -6px; } </style> """, unsafe_allow_html=True)
         #slider_fig_subs = create_slider(subs, 'date', selected_channel, 'slider_fig_subs')
+        graph_without_error = False
         try:
             fig_subs = create_fig_subs_inds(subs, selected_channel, slider , bgcolor, word_color, contr_color, graph_color)
             st.plotly_chart(fig_subs, use_container_width=True) 
-        else:
-            st.write('<span style="color:red;">🚨 график не собрался.</span>')
+        finally:
+            if not graph_without_error:
+                st.write('<span style="color:red;">🚨 график не собрался.</span>') 
         
 
         #---------------------------------------------------------------------------------------------------------------------
