@@ -225,6 +225,7 @@ def main():
         try:
             fig_subs = create_fig_subs_inds(subs, selected_channel, slider , bgcolor, word_color, contr_color, graph_color)
             st.plotly_chart(fig_subs, use_container_width=True) 
+            graph_without_error = True
         finally:
             if not graph_without_error:
                 st.write('<span style="color:red;">🚨 график не собрался.</span>') 
@@ -320,6 +321,7 @@ def main():
         try:
             fig_posts = create_fig_posts_inds(posts, selected_channel, slider, bgcolor, word_color, contr_color, graph_color, color_Nx_size) 
             st.plotly_chart(fig_posts, use_container_width=True)
+            graph_without_error = True
         finally:
             if not graph_without_error:
                 st.write('<span style="color:red;">🚨 график не собрался.</span>') 
@@ -386,6 +388,7 @@ def main():
         graph_without_error = False
         try:
             create_table_top5(channels, posts, post_view, subs, gr_pvr,  selected_channel, slider, bgcolor, word_color, cmap_colors)
+            graph_without_error = True
         finally:
             if not graph_without_error:
                 st.write('<span style="color:red;">🚨 график не собрался.</span>') 
@@ -430,6 +433,8 @@ def main():
         st.write('')
         st.write('<p style="text-align: center;">Источник: Данные Telegram API</p>', unsafe_allow_html=True)
         st.write('<p style="text-align: center;">Обработка данных и дашборд - Альмира (@a1m_ra), Парсинг данных - Вероника (@chacter)</p>', unsafe_allow_html=True)
+
+        graph_without_error = True
     finally:
         if not graph_without_error:
             st.write('<span style="color:red;">🚨 график не собрался.</span>') 
