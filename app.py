@@ -221,8 +221,12 @@ def main():
         # Добавляем собственные стили для изменения внешнего вида слайдера
         st.markdown(""" <style> .stMultiSelect div[class^='select-all'] > input { display:none; } .stSlider > div > div > div[class^='st-b9'] > div > input[type='range'] { appearance: none; background-color: transparent; /* Цвет фона слайдера */ height: 10px; cursor: pointer; } /* Стиль для трекера */ .stSlider > div > div > div[class^='st-b9'] > div > input[type='range']::-webkit-slider-runnable-track { background-color: lightblue; /* Цвет трека */ height: 8px; border-radius: 15px; } /* Стиль для бегунков */ .stSlider > div > div > div[class^='st-b9'] > div > input[type='range']::-webkit-slider-thumb { appearance: none; background-color: red; /* Цвет бегунков */ border: 2px solid black; height: 18px; width: 18px; border-radius: 50%; margin-top: -6px; } </style> """, unsafe_allow_html=True)
         #slider_fig_subs = create_slider(subs, 'date', selected_channel, 'slider_fig_subs')
-        fig_subs = create_fig_subs_inds(subs, selected_channel, slider , bgcolor, word_color, contr_color, graph_color)
-        st.plotly_chart(fig_subs, use_container_width=True) 
+        try:
+            fig_subs = create_fig_subs_inds(subs, selected_channel, slider , bgcolor, word_color, contr_color, graph_color)
+            st.plotly_chart(fig_subs, use_container_width=True) 
+        else:
+            st.write('<span style="color:red;">🚨 график не собрался.</span>')
+        
 
         #---------------------------------------------------------------------------------------------------------------------
         #гистограмма - динамика подписок
@@ -232,8 +236,12 @@ def main():
         # Кастомный CSS для скрытия подписей под слайдером
         st.markdown(""" <style> .stSlider .st-cl::after { content: ""; } </style> """, unsafe_allow_html=True)
         #slider = create_slider(subs, 'datetime', selected_channel, 'slider')
-        fig_subs_pos_neg = create_subs_pos_neg(subs, selected_channel, slider, bgcolor, word_color, contr_color, graph_color, dark_color) 
-        st.plotly_chart(fig_subs_pos_neg, use_container_width=True)
+        try:
+            fig_subs_pos_neg = create_subs_pos_neg(subs, selected_channel, slider, bgcolor, word_color, contr_color, graph_color, dark_color) 
+            st.plotly_chart(fig_subs_pos_neg, use_container_width=True)
+        else:
+            st.write('<span style="color:red;">🚨 график не собрался.</span>')        
+        
 
         #---------------------------------------------------------------------------------------------------------------------
         #пузырьковый график - интерес к контенту
@@ -303,8 +311,11 @@ def main():
         st.markdown('<div class="subheader"><h2>Суточные показатели публикаций</h2></div>', unsafe_allow_html=True)
         st.markdown('<div class="custom-text">На графике представлена динамика публикаций, где каждая точка отражает количество за день. Рядом с графиком индикаторы, показывающие количество публикаций и их процентное изменение относительно предыдущих аналогичных периодов – дня, недели или месяца. Важно отметить, что эти периоды оцениваются скользящим образом, то есть они начинаются не с первого дня месяца или недели, а с текущего момента, что позволяет лучше понимать текущую тенденцию. Анализ помогает выявить изменения в частоте публикаций и может служить основой для корректировки собственных стратегий по созданию контента.</div>', unsafe_allow_html=True)
         #slider_fig_posts = create_slider(posts, 'date', selected_channel, 'slider_fig_posts')
-        fig_posts = create_fig_posts_inds(posts, selected_channel, slider, bgcolor, word_color, contr_color, graph_color, color_Nx_size) 
-        st.plotly_chart(fig_posts, use_container_width=True)
+        try:
+            fig_posts = create_fig_posts_inds(posts, selected_channel, slider, bgcolor, word_color, contr_color, graph_color, color_Nx_size) 
+            st.plotly_chart(fig_posts, use_container_width=True)
+        else:
+            st.write('<span style="color:red;">🚨 график не собрался.</span>')
 
         #---------------------------------------------------------------------------------------------------------------------
         #матрица - график публикаций
@@ -366,48 +377,53 @@ def main():
         st.markdown('<div class="custom-text">Данная таблица содержит рейтинг пяти лучших и пяти худших публикаций по ключевым показателям, включая количество просмотров, реакций, индекс вовлеченности и динамику подписок и отписок после конкретных публикаций. Проведение сравнительного анализа этих метрик позволит выявить типы контента, которые привлекают наибольшее внимание аудитории, стимулируют её активность и способствуют росту подписчиков.</div>', unsafe_allow_html=True)
         st.write('')
         
-        create_table_top5(channels, posts, post_view, subs, gr_pvr,  selected_channel, slider, bgcolor, word_color, cmap_colors)
+        try:
+            create_table_top5(channels, posts, post_view, subs, gr_pvr,  selected_channel, slider, bgcolor, word_color, cmap_colors)
+        else:
+            st.write('<span style="color:red;">🚨 график не собрался.</span>')
     #---------------------------------------------------------------------------------------------------------------------
     # Таблица - динамика просмотров
         
     st.markdown('<div class="subheader"><h2>Динамика просмотров по дням</h2></div>', unsafe_allow_html=True)
     st.markdown('<div class="custom-text">Эта таблица предназначена для определения оптимального времени размещения контента. Также таблица может помочь выявить, какие форматы контента привлекают больше просмотров в первые сутки, и сравнить их с другими форматами. Обратите внимание на разницу между утренними и вечерними публикациями, чтобы понять, когда ваша аудитория наиболее активна. Также следите за необычными скачками просмотров через несколько дней после публикации, так как это может указывать на подозрительную активность.</div>', unsafe_allow_html=True)
     
-
-    # Слайдер для настройки диапазона дней
-    days_to_show = st.slider(
-        label="", 
-        min_value=7, 
-        max_value=72, 
-        value=st.session_state.table_filter_state,
-        key="slider_days",
-    )
-    st.session_state.table_filter_state = days_to_show  # сохраняем новое значение    
-
-    #st.slider("", min_value=7, max_value=72, value=14, key="slider_days")
-    #days_to_show = st.session_state.slider_days
-    columns_to_show = [ "Дата публикации", "Текст поста","Текущие просмотры"] + [str(i)+" д" for i in range(1, days_to_show+1)]
+    try:
+        # Слайдер для настройки диапазона дней
+        days_to_show = st.slider(
+            label="", 
+            min_value=7, 
+            max_value=72, 
+            value=st.session_state.table_filter_state,
+            key="slider_days",
+        )
+        st.session_state.table_filter_state = days_to_show  # сохраняем новое значение    
     
-    df = table_views(table_day_views, slider, days_to_show, selected_channel)
-    # Преобразование слов в ссылки
-    def make_link(row):
-        return f'<a href="{row["Ссылка"]}" target="_blank">{row["Текст поста"]}</a>'
+        #st.slider("", min_value=7, max_value=72, value=14, key="slider_days")
+        #days_to_show = st.session_state.slider_days
+        columns_to_show = [ "Дата публикации", "Текст поста","Текущие просмотры"] + [str(i)+" д" for i in range(1, days_to_show+1)]
+        
+        df = table_views(table_day_views, slider, days_to_show, selected_channel)
+        # Преобразование слов в ссылки
+        def make_link(row):
+            return f'<a href="{row["Ссылка"]}" target="_blank">{row["Текст поста"]}</a>'
+        
+        df['Текст поста'] = df.apply(make_link, axis=1)
     
-    df['Текст поста'] = df.apply(make_link, axis=1)
-
-    df.index = df["ID поста"]
-    df_subset = df[columns_to_show]
+        df.index = df["ID поста"]
+        df_subset = df[columns_to_show]
+        
+        html_table = styled_df(df_subset, '#666', contr_color).to_html()
+        # Оборачиваем таблицу в div с фиксированной шириной и прокруткой
+        scrollable_table = f'<div style="overflow-x: auto; overflow-y: auto; max-height: 700px;">{html_table}</div>'
+        st.write(scrollable_table, unsafe_allow_html=True)  
     
-    html_table = styled_df(df_subset, '#666', contr_color).to_html()
-    # Оборачиваем таблицу в div с фиксированной шириной и прокруткой
-    scrollable_table = f'<div style="overflow-x: auto; overflow-y: auto; max-height: 700px;">{html_table}</div>'
-    st.write(scrollable_table, unsafe_allow_html=True)  
-
-    st.write('')
-    st.write('')
-    st.write('')
-    st.write('<p style="text-align: center;">Источник: Данные Telegram API</p>', unsafe_allow_html=True)
-    st.write('<p style="text-align: center;">Обработка данных и дашборд - Альмира (@a1m_ra), Парсинг данных - Вероника (@chacter)</p>', unsafe_allow_html=True)
+        st.write('')
+        st.write('')
+        st.write('')
+        st.write('<p style="text-align: center;">Источник: Данные Telegram API</p>', unsafe_allow_html=True)
+        st.write('<p style="text-align: center;">Обработка данных и дашборд - Альмира (@a1m_ra), Парсинг данных - Вероника (@chacter)</p>', unsafe_allow_html=True)
+    else:
+        st.write('<span style="color:red;">🚨 график не собрался.</span>')
 
 if __name__ == "__main__":
     main()
